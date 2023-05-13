@@ -1,4 +1,4 @@
----
+<!-- ---
 date: '2022-04-01'
 title: 'ENG2003'
 company: 'York University'
@@ -20,4 +20,4 @@ Among the course content that I found useful were the characteristics of a good 
 
  Because this course has improved my communication with a range of peers as well as my ability to work constructively as a team using the various types of communication we have learned in this course, my experience in this course will influence how I approach other engineering classes. It's vital to communicate with your peers/coworkers in engineering practise so that everyone is on the same page.
 
- There will be many gaps in your work if there is no communication, and you will end up performing a lot of things incorrectly that could have been avoided. In conclusion, this course has taught me that communication is the most vital component of engineering, and that without it, nothing would work out in life.
+ There will be many gaps in your work if there is no communication, and you will end up performing a lot of things incorrectly that could have been avoided. In conclusion, this course has taught me that communication is the most vital component of engineering, and that without it, nothing would work out in life. -->

@@ -1,11 +1,12 @@
 ---
-date: '2022-04-11'
-title: 'TAB2XML'
-github: 'https://github.com/khafaji-ahmed/TAB2XML.git'
+date: '2022-11-26'
+title: 'Statistical World Analysis & Visualizer'
+github: 'https://github.com/khafaji-ahmed/software-design-project'
 external: ''
 tech:
   - Java
-  - Gradle
+  - Maven
+  - Swing
   - JUnit
   - JavaFX
   - vsCode

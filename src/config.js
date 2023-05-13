@@ -10,7 +10,7 @@ module.exports = {
   googleVerification: 'DCl7VAf9tcz6eD9gb67NfkNnJ1PKRNcg8qQiwpbx9Lk',
   name: 'Ahmed Khafaji',
   location: 'Toronto, Canada',
-  email: 'ahmed03@my.yorku.ca',
+  email: 'ahmedkhafaji11@gmail.com',
   github: 'https://github.com/khafaji-ahmed',
   socialMedia: [
     {
@@ -32,10 +32,10 @@ module.exports = {
       name: 'Projects',
       url: '/#projects',
     },
-    {
-      name: 'Reflection',
-      url: '/#jobs',
-    },
+    // {
+    //   name: 'Reflection',
+    //   url: '/#jobs',
+    // },
     {
       name: 'Contact',
       url: '/#contact',

@@ -3,10 +3,9 @@ title: 'About Me'
 avatar: 'me.jpg'
 skills:
   - Java 
+  - C
   - Junit
   - Gradle
-  - Eclipse
-  - Intellij
   - Python
   - HTML
   - JavaScript
