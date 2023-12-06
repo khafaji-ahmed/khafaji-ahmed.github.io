@@ -4,8 +4,6 @@ avatar: 'me.jpg'
 skills:
   - Java 
   - C
-  - Junit
-  - Gradle
   - Python
   - HTML
   - JavaScript

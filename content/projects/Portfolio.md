@@ -6,7 +6,6 @@ external: ''
 tech:
   - Javascript
   - Gatsby
-  - vsCode
 company: ''
 showInProjects: true
 ---
