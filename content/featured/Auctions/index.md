@@ -11,5 +11,5 @@ tech:
 showInProjects: true
 ---
 
-This project aims to create a safe, modular, and easily accessible E-Commerce Auction Website/System. The system will support two different auction types: Forward Auction and Dutch Auction.
+This project is a BAREBONES PROTOTYPE that aims to create a safe, modular, and easily accessible E-Commerce Auction Website/System. The system will support two different auction types: Forward Auction and Dutch Auction.
 

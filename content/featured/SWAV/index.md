@@ -8,4 +8,4 @@ tech:
 showInProjects: true
 ---
 
-SWAV is a software analysis tool that allows users to register a new user and login & view data visualizations.
+SWAV is a BAREBONES PROTOTYPE software analysis tool made for developers that allows users to register a new user and login & view data visualizations.
