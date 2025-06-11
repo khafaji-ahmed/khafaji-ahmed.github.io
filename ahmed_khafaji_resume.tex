@@ -1,0 +1,240 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \scshape Ahmed Khafaji} \\ \vspace{1pt}
+    Toronto, Canada \\ \vspace{1pt}
+    \small \raisebox{-0.1\height}\faPhone\ 647-765-6229 ~ 
+    \href{mailto:ahmedkhafaji11@gmail.com}{\raisebox{-0.2\height}\faEnvelope\ \underline{ahmedkhafaji11@gmail.com}} ~ 
+    \href{https://linkedin.com/in/ahmed-khafaji}{\raisebox{-0.2\height}\faLinkedin\ \underline{linkedin.com/in/ahmed-khafaji}}  ~
+    \href{https://github.com/khafaji-ahmed}{\raisebox{-0.2\height}\faGithub\ \underline{github.com/khafaji-ahmed}}
+    \vspace{-8pt}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {York University}{Sep. 2020 -- Apr. 2025}
+      {Bachelor of Engineering in Software Engineering}{Toronto, ON, Canada}
+      \resumeItemListStart
+        \resumeItem{GPA: 7.4/9}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%------RELEVANT COURSEWORK-------
+\section{Relevant Coursework}
+    \begin{multicols}{4}
+        \begin{itemize}[itemsep=-5pt, parsep=3pt]
+            \item\small Data Structures
+            \item Software Methodology
+            \item Algorithms Analysis
+            \item Database Management
+            \item Artificial Intelligence
+            \item Internet Technology
+            \item Systems Programming
+            \item Computer Architecture
+        \end{itemize}
+    \end{multicols}
+    
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {CAYDE SERVICES INC.}{2022 -- Present}
+      {Founder \& Lead Engineer}{Toronto, Canada}
+      \resumeItemListStart
+        \resumeItem{Bootstrapped and led a Canadian software company delivering government and campus-scale solutions.}
+        \resumeItem{Built and scaled yuMeet, a university social platform with real-time messaging and event matchmaking.}
+        \resumeItem{Oversaw technical architecture, hiring, partnerships, and go-to-market strategy across projects.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Wood Manufacturer}{Feb. 2024 -- Present}
+      {Senior Full-Stack Developer}{Toronto, Canada}
+      \resumeItemListStart
+        \resumeItem{Led a team of 5 developers in refactoring an internal system using PHP and JavaScript, improving performance by 40\%.}
+        \resumeItem{Architected and optimized database structures, reducing query times by 30\% and significantly improving user experience.}
+        \resumeItem{Enhanced system security by implementing best practices, including encryption and secure authentication mechanisms.}
+        \resumeItem{Mentored junior developers and established coding standards, improving team productivity and code quality.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Lightring AI}{Nov. 2022 -- Present}
+      {Senior Full-Stack Developer \& Team Lead}{Toronto, Canada}
+      \resumeItemListStart
+        \resumeItem{Directed the development of critical projects for government and healthcare sectors, increasing client retention by 15\%.}
+        \resumeItem{Introduced CI/CD pipelines and DevOps practices, reducing deployment times by 50\%.}
+        \resumeItem{Mentored junior developers and conducted code reviews, improving team communication and productivity.}
+        \resumeItem{Led multi-platform app development that boosted workflow efficiency by 25\% across the organization.}
+        \resumeItem{Collaborated with stakeholders to define technical requirements and project roadmaps.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-16pt}
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \vspace{-5pt}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{yuMeet -- Campus Social App} $|$ \emph{React Native, Next.js, PostgreSQL, Socket.IO}}{2025}
+          \resumeItemListStart
+            \resumeItem{Led development of a scalable matchmaking and messaging platform for York University students, supporting 55k+ users.}
+            \resumeItem{Architected client-server model with real-time messaging, user verification, event creation, and personalized recommendations.}
+            \resumeItem{Designed a performance-first infrastructure to support concurrent usage with offline fallback and local-first data sync.}
+          \resumeItemListEnd
+          \vspace{-13pt}
+      \resumeProjectHeading
+          {\textbf{Enterprise Billing System} $|$ \emph{Next.js, Node.js, PostgreSQL}}{2024}
+          \resumeItemListStart
+            \resumeItem{Architected and developed a scalable billing system for the Iraq government, processing over 100k daily transactions.}
+            \resumeItem{Integrated multiple payment gateways and implemented real-time transaction monitoring for enhanced scalability.}
+            \resumeItem{Designed microservices architecture with load balancing, ensuring 99.9\% uptime and fault tolerance.}
+          \resumeItemListEnd
+          \vspace{-13pt}
+      \resumeProjectHeading
+          {\textbf{Government E-Visa Platform} $|$ \emph{Next.js, React, MongoDB}}{2023}
+          \resumeItemListStart
+            \resumeItem{Built comprehensive visa application system for Iraq ministry, reducing application processing time by 40\%.}
+            \resumeItem{Created dynamic content management admin system, engaging 50k+ monthly users with improved UX.}
+            \resumeItem{Implemented advanced security features including document verification and fraud detection algorithms.}
+          \resumeItemListEnd
+          \vspace{-13pt}
+      \resumeProjectHeading
+          {\textbf{Real-Time E-Commerce Auction Platform} $|$ \emph{Next.js, Socket.io, Redis}}{2023}
+          \resumeItemListStart
+            \resumeItem{Built secure, scalable auction system with real-time bidding, attracting 10k+ active users in first month.}
+            \resumeItem{Implemented advanced authentication and payment security, protecting over \$500k in transactions.}
+            \resumeItem{Developed automated bidding algorithms and real-time notifications for enhanced user engagement.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+\vspace{-15pt}
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, Java, C, HTML/CSS, JavaScript, TypeScript, PHP, SQL} \\
+     \textbf{Developer Tools}{: VS Code, Google Cloud Platform, Eclipse, Jenkins, GitHub, Docker, Kubernetes} \\
+     \textbf{Technologies/Frameworks}{: React, Next.js, Node.js, Express, Linux, Docker, Virtual Machines, Third-party APIs} \\
+     \textbf{Databases}{: PostgreSQL, MongoDB, Redis, MySQL} \\
+     \textbf{Leadership \& Achievements}{: Team leadership, code architecture, performance optimization, technical mentoring, DevOps implementation} \\
+    }}
+ \end{itemize}
+ \vspace{-16pt}
+
+\end{document}
