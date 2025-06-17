@@ -1,36 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Layout from '../../components/Layout';
 import { motion } from 'framer-motion';
 
 export default function Resume() {
-  const [windowWidth, setWindowWidth] = useState(0);
-
-  useEffect(() => {
-    // Set initial window width
-    setWindowWidth(window.innerWidth);
-
-    // Handle window resize
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Responsive styles based on window width
-  const isMobile = windowWidth < 768;
-  const isTablet = windowWidth >= 768 && windowWidth < 1200;
-  const isDesktop = windowWidth >= 1200;
-
-
-  const experienceItemStyle = {
-    marginBottom: isMobile ? '25px' : '30px',
-  };
-
   const resumePartVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
