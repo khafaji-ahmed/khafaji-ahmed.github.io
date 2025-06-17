@@ -79,7 +79,7 @@ export default function Resume() {
             <motion.div variants={resumePartVariants}>
               <h1 className="text-xl md:text-2xl mb-4 md:mb-5">A little about me</h1>
               <p className="text-sm md:text-base lg:text-base leading-relaxed mb-5 md:mb-10">
-                I&apos;m a Software Engineering student at York University (GPA: 7.4/9) and founder of CAYDE SERVICES INC., a Canadian software company delivering government and campus-scale solutions. I&apos;ve bootstrapped and led development of scalable applications including yuMeet (55k+ users), enterprise billing systems, and government platforms, with expertise in React, Next.js, Node.js, PostgreSQL, and modern DevOps practices.
+                I&apos;m a seasoned software engineer and founder of CAYDE SERVICES INC., a Canadian software company delivering government and enterprise-scale solutions. I&apos;ve bootstrapped and led development of scalable applications including yuMeet (55k+ users), enterprise billing systems, and government platforms, with deep expertise in React, Next.js, Node.js, PostgreSQL, and modern DevOps practices.
               </p>
             </motion.div>
             
