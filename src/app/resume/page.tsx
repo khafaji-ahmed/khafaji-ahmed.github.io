@@ -44,7 +44,7 @@ export default function Resume() {
             <div className="lg:col-span-8 space-y-24">
               {[
                 {
-                  role: "Founder & Principal Architect",
+                  role: "Senior Software Architect",
                   company: "Distinctive Wood Products",
                   period: "2024 — Present",
                   desc: "Solely responsible for the entire architectural landscape, digital infrastructure, and product evolution. Driving industrial-scale automation and high-performance system delivery as the primary technical lead.",
