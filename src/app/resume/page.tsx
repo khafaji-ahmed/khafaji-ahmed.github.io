@@ -141,39 +141,6 @@ export default function Resume() {
             </div>
           </div>
         </section>
-
-        {/* Closing CTA */}
-        <section className="py-64 border-t border-border mt-32">
-          <motion.div {...fadeInUp} className="max-w-4xl text-center md:text-left mx-auto md:mx-0">
-            <h2 className="text-5xl md:text-8xl font-serif leading-[0.9] tracking-tighter mb-12">
-              Looking for an <span className="italic font-light">architect</span> <br /> 
-              to lead your next <span className="italic font-light">venture?</span>
-            </h2>
-            <div className="space-y-6">
-              <p className="text-xl text-muted-foreground font-serif italic">Let&apos;s discuss the details.</p>
-              <div className="flex flex-col md:flex-row gap-8 items-center md:items-baseline">
-                <a href="mailto:cayde@cayde.ca" className="text-3xl md:text-4xl font-serif link-underline">
-                  Let&apos;s talk.
-                </a>
-                <span className="hidden md:block text-muted-foreground">/</span>
-                <span className="text-xl font-sans tracking-tighter">cayde@cayde.ca</span>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* Footer info as requested */}
-        <footer className="py-20 border-t border-border flex flex-col md:flex-row justify-between gap-10 text-[10px] uppercase tracking-[0.3em]">
-          <div className="flex gap-8">
-            <a href="https://github.com/khafaji-ahmed" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">Github</a>
-            <a href="https://linkedin.com/in/ahmed-khafaji" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">LinkedIn</a>
-            <a href="#" className="hover:text-muted-foreground transition-colors">X / Twitter</a>
-          </div>
-          <div className="flex flex-col md:flex-row gap-4 md:gap-10">
-            <span>© 2025 Ahmed Khafaji</span>
-            <span className="text-muted-foreground">Software Architect</span>
-          </div>
-        </footer>
       </div>
     </Layout>
   );
