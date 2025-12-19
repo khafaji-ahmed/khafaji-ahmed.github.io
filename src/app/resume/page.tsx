@@ -47,22 +47,22 @@ export default function Resume() {
                   role: "Founder & Principal Architect",
                   company: "Distinctive Wood Products",
                   period: "2024 — Present",
-                  desc: "Solely responsible for the architectural evolution and implementation of next-generation industrial platforms. Orchestrating high-performance systems and managing end-to-end product strategy.",
-                  stack: ["Next.js", "PHP", "PostgreSQL", "AWS"]
+                  desc: "Solely responsible for the entire architectural landscape, digital infrastructure, and product evolution. Driving industrial-scale automation and high-performance system delivery as the primary technical lead.",
+                  stack: ["JavaScript", "PHP", "Postgres", "AWS"]
                 },
                 {
                   role: "Software Architect",
                   company: "Lightring AI",
                   period: "2022 — 2023",
-                  desc: "Revolutionized core infrastructure for government and healthcare sectors, improving system latency by 30% and scaling to handle mission-critical traffic flows.",
-                  stack: ["Node.js", "Kubernetes", "Redis", "Terraform"]
+                  desc: "Revolutionized core infrastructure for government and healthcare sectors, improving system latency by 30% and scaling to handle mission-critical traffic flows using distributed event-driven systems.",
+                  stack: ["Go", "gRPC", "Kafka", "Kubernetes", "Redis"]
                 },
                 {
                   role: "Founder & Principal Architect",
                   company: "Cayde Services Inc.",
                   period: "2020 — 2022",
-                  desc: "Established and led the technical vision for high-fidelity user interfaces and real-time synchronization systems, serving 55,000+ users across mission-critical platforms.",
-                  stack: ["React Native", "TypeScript", "Framer Motion", "Tailwind"]
+                  desc: "Spearheaded the creation of high-fidelity cross-platform systems and real-time synchronization engines, optimizing high-load data pipelines for 55,000+ active users.",
+                  stack: ["Rust", "TypeScript", "React Native", "WebAssembly", "GraphQL"]
                 }
               ].map((job, i) => (
                 <motion.div 
