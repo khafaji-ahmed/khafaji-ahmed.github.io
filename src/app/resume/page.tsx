@@ -2,13 +2,13 @@
 
 import { motion } from 'framer-motion';
 import Layout from '../../components/Layout';
-import { Download, ExternalLink } from 'lucide-react';
+import { Download } from 'lucide-react';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: "easeOut" as const }
 };
 
 export default function Resume() {
