@@ -250,9 +250,9 @@ export default function Home() {
         </section>
 
         {/* Closing */}
-        <section className="py-40 text-center">
-            <motion.div {...fadeInUp}>
-              <h2 className="text-5xl md:text-[12rem] font-serif font-bold tracking-tighter leading-[0.8] mb-20">
+        <section className="pt-40 pb-20 border-t border-border">
+            <motion.div {...fadeInUp} className="max-w-4xl">
+              <h2 className="text-5xl md:text-[10rem] font-serif font-bold tracking-tighter leading-[0.8] mb-16">
                 Let&apos;s Build <br /> <span className="italic font-light text-accent">Something.</span>
               </h2>
               <Button size="lg" className="rounded-none bg-ink text-paper hover:bg-accent transition-colors px-12 h-16 text-lg font-sans uppercase tracking-[0.2em]" asChild>

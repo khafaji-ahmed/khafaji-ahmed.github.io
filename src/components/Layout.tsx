@@ -78,10 +78,10 @@ export default function Layout({ children, hideFooterCTA = false }: { children: 
       </main>
 
       {/* Minimal Footer */}
-      <footer className="py-20 border-t border-border bg-paper">
+      <footer className="pb-20 bg-paper">
         <div className="editorial-container">
           {!hideFooterCTA && (
-            <div className="pb-20">
+            <div className="py-20 border-t border-border">
               <h2 className="font-serif text-4xl font-bold mb-4 italic">Let&apos;s talk.</h2>
               <a href="mailto:cayde@cayde.ca" className="text-xl font-sans link-underline">
                 cayde@cayde.ca
