@@ -39,46 +39,26 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <span className="block h-[1px] w-0 bg-ink group-hover:w-full transition-all duration-300" />
           </Link>
 
-            <div className="flex gap-12 items-center">
-              {navLinks.map((link) => {
-                const isActive = normalizedPathname === link.href;
-                return (
-                  <Link 
-                    key={link.name} 
-                    href={link.href}
-                    className={cn(
-                      "text-[10px] uppercase tracking-[0.3em] transition-all duration-300 relative group py-2",
-                      isActive ? "text-ink" : "text-muted-foreground hover:text-ink"
-                    )}
-                  >
-                    <span className="relative inline-flex flex-col items-center">
-                      <span className={cn(
-                        "transition-all duration-300",
-                        isActive ? "font-bold" : "font-normal"
-                      )}>
-                        {link.name}
-                      </span>
-                      {/* Hidden bold text to reserve space and prevent layout shift */}
-                      <span className="invisible h-0 font-bold overflow-hidden" aria-hidden="true">
-                        {link.name}
-                      </span>
-                    </span>
-                    
-                    {isActive && (
-                      <motion.span 
-                        layoutId="nav-underline"
-                        className="absolute bottom-0 left-0 w-full h-[1.5px] bg-ink"
-                        transition={{
-                          type: "spring",
-                          stiffness: 380,
-                          damping: 30
-                        }}
-                      />
-                    )}
-                  </Link>
-                );
-              })}
-            </div>
+          <div className="flex gap-8 items-center">
+            {navLinks.map((link) => (
+              <Link 
+                key={link.name} 
+                href={link.href}
+                  className={cn(
+                    "text-sm font-sans uppercase tracking-[0.2em] transition-colors hover:text-accent relative",
+                    normalizedPathname === link.href ? "text-ink font-bold" : "text-muted-foreground"
+                  )}
+                >
+                  {link.name}
+                  {normalizedPathname === link.href && (
+                  <motion.span 
+                    layoutId="nav-underline"
+                    className="absolute -bottom-1 left-0 w-full h-[1px] bg-accent"
+                  />
+                )}
+              </Link>
+            ))}
+          </div>
         </div>
       </nav>
 
