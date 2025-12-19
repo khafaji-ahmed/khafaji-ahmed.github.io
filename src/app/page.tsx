@@ -76,19 +76,19 @@ export default function Home() {
                 Ahmed Khafaji combines architectural precision with entrepreneurial vision to build high-performance systems that define the next generation of web experience.
               </motion.p>
               
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.7 }}
-                className="flex flex-col gap-4 items-start"
-              >
-                <Button variant="link" className="p-0 h-auto text-lg font-serif italic link-underline group" asChild>
-                  <a href="mailto:ahmedkhafaji11@gmail.com">
-                    Get in touch 
-                    <ArrowRight className="inline-block ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </a>
-                </Button>
-              </motion.div>
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.7 }}
+                  className="flex flex-col gap-4 items-start"
+                >
+                  <Button variant="link" className="p-0 h-auto text-lg font-serif italic link-underline group" asChild>
+                    <a href="mailto:cayde@cayde.ca">
+                      Get in touch 
+                      <ArrowRight className="inline-block ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </a>
+                  </Button>
+                </motion.div>
             </div>
           </div>
         </section>
@@ -251,14 +251,14 @@ export default function Home() {
 
         {/* Closing */}
         <section className="py-40 text-center">
-          <motion.div {...fadeInUp}>
-            <h2 className="text-5xl md:text-[12rem] font-serif font-bold tracking-tighter leading-[0.8] mb-20">
-              Let&apos;s Build <br /> <span className="italic font-light text-accent">Something.</span>
-            </h2>
-            <Button size="lg" className="rounded-none bg-ink text-paper hover:bg-accent transition-colors px-12 h-16 text-lg font-sans uppercase tracking-[0.2em]" asChild>
-              <a href="mailto:ahmedkhafaji11@gmail.com">Initialize</a>
-            </Button>
-          </motion.div>
+            <motion.div {...fadeInUp}>
+              <h2 className="text-5xl md:text-[12rem] font-serif font-bold tracking-tighter leading-[0.8] mb-20">
+                Let&apos;s Build <br /> <span className="italic font-light text-accent">Something.</span>
+              </h2>
+              <Button size="lg" className="rounded-none bg-ink text-paper hover:bg-accent transition-colors px-12 h-16 text-lg font-sans uppercase tracking-[0.2em]" asChild>
+                <a href="mailto:cayde@cayde.ca">Initialize</a>
+              </Button>
+            </motion.div>
         </section>
       </div>
     </Layout>

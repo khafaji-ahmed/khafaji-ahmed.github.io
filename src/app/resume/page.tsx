@@ -146,11 +146,11 @@ export default function Resume() {
             <div className="space-y-6">
               <p className="text-xl text-muted-foreground font-serif italic">Let&apos;s discuss the details.</p>
               <div className="flex flex-col md:flex-row gap-8 items-center md:items-baseline">
-                <a href="mailto:ahmedkhafaji11@gmail.com" className="text-3xl md:text-4xl font-serif link-underline">
+                <a href="mailto:cayde@cayde.ca" className="text-3xl md:text-4xl font-serif link-underline">
                   Let&apos;s talk.
                 </a>
                 <span className="hidden md:block text-muted-foreground">/</span>
-                <span className="text-xl font-sans tracking-tighter">ahmedkhafaji11@gmail.com</span>
+                <span className="text-xl font-sans tracking-tighter">cayde@cayde.ca</span>
               </div>
             </div>
           </motion.div>

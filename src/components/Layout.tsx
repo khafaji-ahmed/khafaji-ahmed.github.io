@@ -82,11 +82,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="editorial-container">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
             <div>
-              <h2 className="font-serif text-4xl font-bold mb-4 italic">Let&apos;s talk.</h2>
-              <a href="mailto:ahmedkhafaji11@gmail.com" className="text-xl font-sans link-underline">
-                ahmedkhafaji11@gmail.com
-              </a>
-            </div>
+                <h2 className="font-serif text-4xl font-bold mb-4 italic">Let&apos;s talk.</h2>
+                <a href="mailto:cayde@cayde.ca" className="text-xl font-sans link-underline">
+                  cayde@cayde.ca
+                </a>
+              </div>
             
             <div className="flex gap-12 text-sm uppercase tracking-widest text-muted-foreground">
               <a href="https://github.com/khafaji-ahmed" target="_blank" className="hover:text-ink transition-colors">Github</a>
