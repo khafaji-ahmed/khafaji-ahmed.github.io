@@ -1,137 +1,108 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { User, Code2, MapPin, Briefcase, GraduationCap, Heart } from 'lucide-react';
 import Layout from '../../components/Layout';
 import Image from 'next/image';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-};
-
-const stagger = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
 };
 
 export default function About() {
   return (
     <Layout>
-      <div className="space-y-24">
-        {/* Hero Section */}
-        <section>
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="text-center"
+      <div className="editorial-container">
+        {/* Header */}
+        <section className="mb-32">
+          <motion.h1 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="text-6xl md:text-9xl font-serif font-bold tracking-tighter"
           >
-            <h1 className="text-6xl md:text-9xl font-bold tracking-tighter opacity-10 font-unbounded absolute left-1/2 -translate-x-1/2 top-20 select-none pointer-events-none w-full">
-              ABOUT ME
-            </h1>
-            <div className="relative z-10 pt-20">
-              <div className="w-32 h-32 md:w-48 md:h-48 mx-auto relative mb-8">
-                <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full" />
-                <Image 
-                  src="/selfie.png" 
-                  alt="Ahmed portrait" 
-                  width={200} 
-                  height={200} 
-                  className="rounded-full relative z-10 border-4 border-zinc-900 shadow-2xl grayscale hover:grayscale-0 transition-all duration-500"
-                />
-              </div>
-              <motion.h2 
-                className="text-4xl md:text-6xl font-bold mb-4"
-                variants={fadeInUp}
-                initial="initial"
-                animate="animate"
-              >
-                Ahmed Khafaji
-              </motion.h2>
-              <motion.p 
-                className="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto"
-                variants={fadeInUp}
-                initial="initial"
-                animate="animate"
-                transition={{ delay: 0.2 }}
-              >
-                Software Engineer, Founder, and Digital Architect based in Toronto.
-              </motion.p>
-            </div>
-          </motion.div>
+            The <span className="italic font-light">Architect.</span>
+          </motion.h1>
         </section>
 
-        {/* Content Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+          {/* Main Narrative */}
           <motion.div 
-            whileHover={{ y: -5 }}
-            className="glass rounded-[2.5rem] p-10 space-y-6"
+            {...fadeInUp}
+            className="lg:col-span-7 space-y-12"
           >
-            <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center">
-              <User className="text-white" />
-            </div>
-            <h3 className="text-2xl font-bold">The Story</h3>
-            <p className="text-zinc-400 leading-relaxed">
-              I am a Software Engineering student at York University and the founder of Cayde Services Inc. 
-              My journey began with a passion for solving complex problems through elegant code. 
-              Today, I lead development teams to build campus-scale solutions and government-grade platforms.
+            <p className="text-3xl md:text-4xl font-serif leading-snug">
+              Ahmed Khafaji is a software architect and founder focused on the intersection of technical excellence and brand storytelling.
             </p>
-            <div className="flex items-center gap-2 text-zinc-500">
-              <MapPin size={16} />
-              <span>Toronto, Canada</span>
+            
+            <div className="space-y-6 text-lg text-muted-foreground leading-relaxed max-w-2xl">
+              <p>
+                My journey in technology began with a fascination for systems—how they scale, how they fail, and how they can be refined into something elegant. Today, I translate that fascination into digital products that solve complex problems for high-growth ventures.
+              </p>
+              <p>
+                I believe that software should be as beautiful on the inside as it is on the outside. This means rigorous type-safety, modular architecture, and a relentless focus on performance. But beyond the code, I am a builder at heart, always looking for the most efficient path from idea to impact.
+              </p>
+              <p>
+                Currently, I am exploring the boundaries of edge computing and AI integration, seeking ways to make the digital world feel more responsive and human.
+              </p>
+            </div>
+
+            <div className="pt-20">
+              <h3 className="text-[10px] uppercase tracking-[0.4em] mb-10 border-b border-border pb-4">Philosophy</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                {[
+                  { title: "Precision", desc: "Every line of code is a design decision. I value clarity over cleverness." },
+                  { title: "Velocity", desc: "Shipping is a feature. I build systems that enable rapid iteration without debt." },
+                  { title: "Empathy", desc: "Software is for people. If it doesn't solve a human problem, it's just noise." },
+                  { title: "Scale", desc: "Architecture must breathe. I design for tomorrow's growth, today." }
+                ].map((item, i) => (
+                  <div key={i} className="space-y-2">
+                    <h4 className="font-serif text-xl italic">{item.title}</h4>
+                    <p className="text-sm text-muted-foreground">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
 
+          {/* Sidebar / Stats */}
           <motion.div 
-            whileHover={{ y: -5 }}
-            className="glass rounded-[2.5rem] p-10 space-y-6"
+            {...fadeInUp}
+            className="lg:col-span-5 space-y-20"
           >
-            <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center">
-              <Briefcase className="text-white" />
+            <div className="aspect-square relative bg-muted grayscale">
+              <Image 
+                src="/selfie.png" 
+                alt="Ahmed Portrait" 
+                fill 
+                className="object-cover"
+              />
             </div>
-            <h3 className="text-2xl font-bold">Professional Path</h3>
-            <p className="text-zinc-400 leading-relaxed">
-              With 4+ years of experience, I&apos;ve navigated through AI, manufacturing, and public sectors. 
-              I specialize in creating high-traffic systems, including social platforms with 55k+ users 
-               and billing engines processing 100k+ daily transactions.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {['Leadership', 'Scalability', 'Innovation'].map(tag => (
-                <span key={tag} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-zinc-400">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </motion.div>
 
-          <motion.div 
-            whileHover={{ y: -5 }}
-            className="glass rounded-[2.5rem] p-10 space-y-6 md:col-span-2 bg-gradient-to-br from-zinc-900/50 to-black/50"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-              <div className="space-y-4">
-                <GraduationCap className="text-zinc-500" />
-                <h4 className="font-bold">Education</h4>
-                <p className="text-zinc-400 text-sm">Software Engineering<br />York University</p>
-              </div>
-              <div className="space-y-4">
-                <Code2 className="text-zinc-500" />
-                <h4 className="font-bold">Tech Stack</h4>
-                <p className="text-zinc-400 text-sm">Next.js, TypeScript, Node.js, PostgreSQL, AWS</p>
-              </div>
-              <div className="space-y-4">
-                <Heart className="text-zinc-500" />
-                <h4 className="font-bold">Interests</h4>
-                <p className="text-zinc-400 text-sm">Product Design, AI Ethics, Open Source</p>
+            <div className="space-y-10">
+              <h3 className="text-[10px] uppercase tracking-[0.4em] border-b border-border pb-4">In Numbers</h3>
+              <div className="grid grid-cols-2 gap-10">
+                <div>
+                  <span className="block text-4xl font-serif font-bold">08+</span>
+                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Years Experience</span>
+                </div>
+                <div>
+                  <span className="block text-4xl font-serif font-bold">15+</span>
+                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Ventures Launched</span>
+                </div>
+                <div>
+                  <span className="block text-4xl font-serif font-bold">1M+</span>
+                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Users Served</span>
+                </div>
+                <div>
+                  <span className="block text-4xl font-serif font-bold">∞</span>
+                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Curiosity</span>
+                </div>
               </div>
             </div>
           </motion.div>
-        </section>
+        </div>
       </div>
     </Layout>
   );

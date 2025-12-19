@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Unbounded } from "next/font/google";
+import { Fraunces, Syne } from "next/font/google";
 import "./globals.css";
 
-const jakarta = Plus_Jakarta_Sans({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-jakarta",
+  variable: "--font-serif",
   display: "swap",
 });
 
-const unbounded = Unbounded({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-unbounded",
+  variable: "--font-sans",
   display: "swap",
 });
 
@@ -25,11 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={`${fraunces.variable} ${syne.variable}`}>
       <head>
         <link rel="icon" type="image/png" href="/favicon.png" />
       </head>
-      <body className={`${jakarta.variable} ${unbounded.variable} antialiased`}>
+      <body className="bg-paper text-ink selection:bg-accent/30 antialiased overflow-x-hidden">
         {children}
       </body>
     </html>

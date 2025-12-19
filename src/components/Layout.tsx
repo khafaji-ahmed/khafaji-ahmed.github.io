@@ -1,132 +1,91 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-
-interface LayoutProps {
-  children: React.ReactNode;
-}
+import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/resume', label: 'Resume' },
+  { name: 'Index', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Resume', href: '/resume' },
 ];
 
-export default function Layout({ children }: LayoutProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+export default function Layout({ children }: { children: React.ReactNode }) {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="min-h-screen selection:bg-white selection:text-black">
-      <div className="noise-bg" />
-      
+    <div className="min-h-screen selection:bg-accent/20">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="z-50"
-          >
-            <Link href="/" className="text-xl font-unbounded font-bold tracking-tighter">
-              AHMED<span className="text-zinc-500">.</span>
-            </Link>
-          </motion.div>
+      <nav className={cn(
+        "fixed top-0 left-0 w-full z-50 transition-all duration-500 py-8",
+        isScrolled ? "bg-paper/80 backdrop-blur-md py-4 border-b border-border" : "bg-transparent"
+      )}>
+        <div className="editorial-container flex justify-between items-baseline">
+          <Link href="/" className="group">
+            <span className="font-serif text-2xl font-bold tracking-tighter">Ahmed.</span>
+            <span className="block h-[1px] w-0 bg-ink group-hover:w-full transition-all duration-300" />
+          </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8 glass px-8 py-3 rounded-full">
+          <div className="flex gap-8 items-center">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
+              <Link 
+                key={link.name} 
                 href={link.href}
-                className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
+                className={cn(
+                  "text-sm font-sans uppercase tracking-[0.2em] transition-colors hover:text-accent relative",
+                  pathname === link.href ? "text-ink font-bold" : "text-muted-foreground"
+                )}
               >
-                {link.label}
+                {link.name}
+                {pathname === link.href && (
+                  <motion.span 
+                    layoutId="nav-underline"
+                    className="absolute -bottom-1 left-0 w-full h-[1px] bg-accent"
+                  />
+                )}
               </Link>
             ))}
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="hidden md:block"
-          >
-            <Button
-              variant="outline"
-              className="rounded-full border-zinc-800 hover:bg-white hover:text-black transition-all group"
-              onClick={() => window.location.href = 'mailto:ahmedkhafaji11@gmail.com'}
-            >
-              Contact Me
-              <ArrowUpRight className="ml-2 w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </Button>
-          </motion.div>
-
-          {/* Mobile Toggle */}
-          <button
-            className="md:hidden z-50 p-2 text-white"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-black/95 flex flex-col items-center justify-center gap-8 p-6 md:hidden"
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="text-4xl font-unbounded font-bold hover:text-zinc-400 transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Button
-              size="lg"
-              className="mt-8 rounded-full px-12 h-16 text-lg"
-              onClick={() => {
-                setIsMenuOpen(false);
-                window.location.href = 'mailto:ahmedkhafaji11@gmail.com';
-              }}
-            >
-              Get in Touch
-            </Button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <main className="relative pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
-        {children}
+      {/* Main Content */}
+      <main className="pt-32 pb-20">
+        <div className="noise-bg min-h-screen">
+          {children}
+        </div>
       </main>
 
-      {/* Simple Footer */}
-      <footer className="border-t border-zinc-900 py-12 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-zinc-500 text-sm font-medium">
-            © {new Date().getFullYear()} Ahmed Khafaji. Built with precision.
-          </p>
-          <div className="flex gap-6">
-            {['GitHub', 'LinkedIn', 'Twitter'].map((social) => (
-              <a
-                key={social}
-                href="#"
-                className="text-sm text-zinc-400 hover:text-white transition-colors"
-              >
-                {social}
+      {/* Minimal Footer */}
+      <footer className="py-20 border-t border-border bg-paper">
+        <div className="editorial-container">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+            <div>
+              <h2 className="font-serif text-4xl font-bold mb-4 italic">Let&apos;s talk.</h2>
+              <a href="mailto:ahmedkhafaji11@gmail.com" className="text-xl font-sans link-underline">
+                ahmedkhafaji11@gmail.com
               </a>
-            ))}
+            </div>
+            
+            <div className="flex gap-12 text-sm uppercase tracking-widest text-muted-foreground">
+              <a href="https://github.com/khafaji-ahmed" target="_blank" className="hover:text-ink transition-colors">Github</a>
+              <a href="#" className="hover:text-ink transition-colors">LinkedIn</a>
+              <a href="#" className="hover:text-ink transition-colors">X / Twitter</a>
+            </div>
+          </div>
+          
+          <div className="mt-20 pt-10 border-t border-border flex justify-between text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+            <span>© 2025 Ahmed Khafaji</span>
+            <span>Software Architect</span>
           </div>
         </div>
       </footer>

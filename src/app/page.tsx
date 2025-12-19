@@ -1,196 +1,181 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Twitter, Mail, Code2, Rocket, Globe } from 'lucide-react';
+import { ArrowRight, Github, Mail, Globe, ExternalLink } from 'lucide-react';
 import Layout from '../components/Layout';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-};
-
-const stagger = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
 };
 
 export default function Home() {
   return (
     <Layout>
-      <div className="space-y-32">
-        {/* Hero Section */}
-        <section className="relative min-h-[70vh] flex flex-col justify-center">
-          <motion.div 
-            variants={stagger}
-            initial="initial"
-            animate="animate"
-            className="max-w-4xl"
-          >
-            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 text-xs font-medium mb-8">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-              </span>
-              Available for new projects
-            </motion.div>
+      <div className="editorial-container space-y-40 md:space-y-64">
+        {/* Editorial Hero */}
+        <section className="relative pt-10 md:pt-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            <div className="lg:col-span-8">
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="inline-block text-[10px] uppercase tracking-[0.5em] text-muted-foreground mb-6"
+              >
+                Based in California — Software Architect
+              </motion.span>
+              <motion.h1 
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                className="text-6xl md:text-[10rem] font-serif font-bold leading-[0.85] tracking-tighter mb-12 text-balance"
+              >
+                Crafting <br />
+                Digital <br />
+                <span className="italic font-light text-accent">Artifacts.</span>
+              </motion.h1>
+            </div>
             
-            <motion.h1 
-              variants={fadeInUp}
-              className="text-5xl md:text-8xl font-unbounded font-bold tracking-tight mb-8 leading-[1.1] gradient-text"
-            >
-              Architecting Digital <br />
-              <span className="text-white">Futures.</span>
-            </motion.h1>
-            
-            <motion.p 
-              variants={fadeInUp}
-              className="text-lg md:text-xl text-zinc-400 max-w-2xl leading-relaxed mb-10"
-            >
-              I&apos;m Ahmed, a Software Engineer and Founder dedicated to building high-performance applications with exceptional user experiences.
-            </motion.p>
-            
-            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
-              <Button size="lg" className="rounded-full bg-white text-black hover:bg-zinc-200 px-8 h-14 text-base font-semibold">
-                Explore Work
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-              <div className="flex items-center gap-2">
-                {[
-                  { icon: <Github size={20} />, href: "https://github.com/khafaji-ahmed" },
-                  { icon: <Linkedin size={20} />, href: "#" },
-                  { icon: <Twitter size={20} />, href: "#" }
-                ].map((social, i) => (
-                  <a 
-                    key={i}
-                    href={social.href}
-                    className="w-14 h-14 flex items-center justify-center rounded-full border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 transition-all"
-                  >
-                    {social.icon}
+            <div className="lg:col-span-4 lg:pt-24">
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 1 }}
+                className="text-xl text-muted-foreground leading-relaxed font-sans mb-10"
+              >
+                Ahmed Khafaji combines architectural precision with entrepreneurial vision to build high-performance systems that define the next generation of web experience.
+              </motion.p>
+              
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.7 }}
+                className="flex flex-col gap-4 items-start"
+              >
+                <Button variant="link" className="p-0 h-auto text-lg font-serif italic link-underline group" asChild>
+                  <a href="mailto:ahmedkhafaji11@gmail.com">
+                    Get in touch 
+                    <ArrowRight className="inline-block ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </a>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
+                </Button>
+              </motion.div>
+            </div>
+          </div>
+        </section>
 
-          {/* Floating Element */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="absolute top-1/2 right-0 -translate-y-1/2 hidden lg:block"
+        {/* The Portrait / Statement */}
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
+          <motion.div 
+            {...fadeInUp}
+            className="lg:col-span-5 order-2 lg:order-1"
           >
-            <div className="relative w-80 h-80">
-              <div className="absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full" />
-              <div className="relative glass rounded-3xl p-8 border-zinc-800 rotate-3 hover:rotate-0 transition-transform duration-500">
-                <Image 
-                  src="/selfie.png" 
-                  alt="Ahmed" 
-                  width={400} 
-                  height={400} 
-                  className="rounded-xl grayscale hover:grayscale-0 transition-all duration-500"
-                />
+            <div className="relative aspect-[3/4] bg-muted overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 rounded-sm">
+              <Image 
+                src="/selfie.png" 
+                alt="Ahmed Khafaji" 
+                fill 
+                className="object-cover scale-110 hover:scale-100 transition-transform duration-1000"
+              />
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            {...fadeInUp}
+            className="lg:col-span-7 order-1 lg:order-2 space-y-12"
+          >
+            <h2 className="text-4xl md:text-7xl font-serif leading-tight">
+              A philosophy of <span className="italic">intent.</span>
+            </h2>
+            <div className="max-w-xl space-y-6 text-lg text-muted-foreground leading-relaxed">
+              <p>
+                In an era of mass-produced code, I prioritize the artisanal. Every line is an architectural choice, every interaction a moment of brand expression.
+              </p>
+              <p>
+                From founding startups to leading engineering teams, my focus remains constant: building scalable, type-safe, and visually arresting software that scales with your ambition.
+              </p>
+              <div className="pt-10 grid grid-cols-2 gap-10">
+                <div>
+                  <h4 className="text-[10px] uppercase tracking-widest font-sans mb-4 border-b border-border pb-2">Core Stack</h4>
+                  <ul className="text-sm space-y-2 text-ink">
+                    <li>Next.js / React</li>
+                    <li>TypeScript / Node</li>
+                    <li>PostgreSQL / Redis</li>
+                    <li>AWS / Vercel</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-[10px] uppercase tracking-widest font-sans mb-4 border-b border-border pb-2">Disciplines</h4>
+                  <ul className="text-sm space-y-2 text-ink">
+                    <li>System Architecture</li>
+                    <li>Product Strategy</li>
+                    <li>UI/UX Engineering</li>
+                    <li>Cloud Infrastructure</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </motion.div>
         </section>
 
-        {/* Bento Grid Features */}
+        {/* Work / Index Preview */}
         <section>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="md:col-span-2 glass rounded-[2.5rem] p-10 flex flex-col justify-between min-h-[400px]"
-            >
-              <div>
-                <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-6">
-                  <Code2 className="text-white" />
+          <div className="flex justify-between items-baseline mb-20 border-b border-border pb-10">
+            <h2 className="text-5xl font-serif italic">Selected Works</h2>
+            <a href="/resume" className="text-xs uppercase tracking-[0.3em] link-underline">View Full Index</a>
+          </div>
+          
+          <div className="space-y-32">
+            {[
+              {
+                title: "Venture Architecture",
+                category: "Product / Strategy",
+                year: "2024",
+                desc: "Scaling digital products from zero to market leader with a focus on core infrastructure and performance."
+              },
+              {
+                title: "High-Performance Systems",
+                category: "Engineering / Backend",
+                year: "2023",
+                desc: "Designing low-latency data pipelines and distributed systems that handle millions of requests with precision."
+              }
+            ].map((work, i) => (
+              <motion.div 
+                key={i}
+                {...fadeInUp}
+                className="group cursor-pointer grid grid-cols-1 lg:grid-cols-12 gap-10 py-10 border-b border-border/50 hover:border-ink transition-colors"
+              >
+                <div className="lg:col-span-1 text-[10px] uppercase tracking-widest text-muted-foreground pt-2">
+                  0{i + 1}
                 </div>
-                <h3 className="text-3xl font-bold mb-4">Engineering Excellence</h3>
-                <p className="text-zinc-400 text-lg leading-relaxed">
-                  Specializing in React, Next.js, and TypeScript to build scalable, 
-                  type-safe applications that stand the test of time.
-                </p>
-              </div>
-              <div className="flex gap-4 mt-8 flex-wrap">
-                {['Next.js', 'TypeScript', 'React', 'Node.js', 'PostgreSQL'].map(tech => (
-                  <span key={tech} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-zinc-300">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="glass rounded-[2.5rem] p-10 flex flex-col justify-between bg-zinc-900/50"
-            >
-              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-6">
-                <Rocket className="text-white" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold mb-4">Founder Mindset</h3>
-                <p className="text-zinc-400">
-                  I don&apos;t just write code; I build products that solve real problems.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="glass rounded-[2.5rem] p-10 flex flex-col justify-between"
-            >
-              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-6">
-                <Globe size={24} className="text-white" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold mb-4">Global Reach</h3>
-                <p className="text-zinc-400">
-                  Crafting experiences for users worldwide with a focus on accessibility and performance.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="md:col-span-2 glass rounded-[2.5rem] p-10 flex flex-col md:flex-row items-center gap-10 bg-gradient-to-br from-zinc-900 to-black"
-            >
-              <div className="flex-1">
-                <h3 className="text-3xl font-bold mb-4">View My Resume</h3>
-                <p className="text-zinc-400 text-lg mb-8">
-                  A detailed look at my professional journey, skills, and accomplishments.
-                </p>
-                <Button variant="outline" className="rounded-full h-12 px-8 border-zinc-800" asChild>
-                  <a href="/resume">Download CV</a>
-                </Button>
-              </div>
-              <div className="relative w-full md:w-1/3 aspect-square rounded-2xl bg-zinc-800/30 border border-zinc-700/50 overflow-hidden flex items-center justify-center">
-                 <Mail size={64} className="text-zinc-700" />
-              </div>
-            </motion.div>
+                <div className="lg:col-span-5">
+                  <h3 className="text-4xl md:text-6xl font-serif group-hover:italic transition-all duration-300">{work.title}</h3>
+                </div>
+                <div className="lg:col-span-4 text-muted-foreground text-sm leading-relaxed pt-2">
+                  {work.desc}
+                </div>
+                <div className="lg:col-span-2 text-right text-[10px] uppercase tracking-widest pt-2">
+                  <span className="block mb-1">{work.category}</span>
+                  <span className="text-muted-foreground/50">{work.year}</span>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="pb-20">
-          <div className="relative glass rounded-[3rem] p-12 md:p-24 overflow-hidden text-center">
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-blue-500/10 to-transparent pointer-events-none" />
-            <h2 className="text-4xl md:text-7xl font-bold mb-8 relative z-10">
-              Let&apos;s build something <br />
-              <span className="text-zinc-500 underline decoration-blue-500">extraordinary.</span>
+        {/* Closing */}
+        <section className="py-40 text-center">
+          <motion.div {...fadeInUp}>
+            <h2 className="text-5xl md:text-[12rem] font-serif font-bold tracking-tighter leading-[0.8] mb-20">
+              Let&apos;s Build <br /> <span className="italic font-light text-accent">Something.</span>
             </h2>
-            <p className="text-zinc-400 text-xl max-w-2xl mx-auto mb-12 relative z-10">
-              Have an idea or a project in mind? I&apos;m always open to discussing new opportunities.
-            </p>
-            <Button size="lg" className="rounded-full bg-white text-black hover:bg-zinc-200 px-12 h-16 text-lg font-bold relative z-10" asChild>
-              <a href="mailto:ahmedkhafaji11@gmail.com">Start a Conversation</a>
+            <Button size="lg" className="rounded-none bg-ink text-paper hover:bg-accent transition-colors px-12 h-16 text-lg font-sans uppercase tracking-[0.2em]" asChild>
+              <a href="mailto:ahmedkhafaji11@gmail.com">Initialize</a>
             </Button>
-          </div>
+          </motion.div>
         </section>
       </div>
     </Layout>

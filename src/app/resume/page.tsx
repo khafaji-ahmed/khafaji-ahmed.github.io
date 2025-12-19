@@ -1,181 +1,159 @@
 'use client';
 
-import React from 'react';
-import Image from 'next/image';
-import Layout from '../../components/Layout';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { FileText, Download, Briefcase, GraduationCap, Code2, Mail, MapPin, Phone } from 'lucide-react';
+import Layout from '../../components/Layout';
+import { Download, ExternalLink } from 'lucide-react';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-};
-
-const stagger = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
 };
 
 export default function Resume() {
   return (
     <Layout>
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        {/* Sidebar */}
-        <motion.section 
-          variants={stagger}
-          initial="initial"
-          animate="animate"
-          className="lg:col-span-4 space-y-8"
-        >
-          <motion.div variants={fadeInUp} className="glass rounded-[2.5rem] p-10 text-center lg:text-left">
-            <div className="w-32 h-32 mx-auto lg:mx-0 mb-6 relative">
-              <Image 
-                src="/selfie.png" 
-                alt="Ahmed Khafaji" 
-                width={128} 
-                height={128} 
-                className="rounded-full grayscale border-2 border-zinc-800"
-              />
-            </div>
-            <h1 className="text-3xl font-bold mb-2 tracking-tight">Ahmed Khafaji</h1>
-            <p className="text-zinc-400 mb-8 font-medium">Founder & Lead Engineer</p>
-            
-            <div className="space-y-4 text-sm text-zinc-500 mb-8">
-              <div className="flex items-center gap-3 justify-center lg:justify-start">
-                <Mail size={16} />
-                <span>ahmedkhafaji11@gmail.com</span>
-              </div>
-              <div className="flex items-center gap-3 justify-center lg:justify-start">
-                <Phone size={16} />
-                <span>647-765-6229</span>
-              </div>
-              <div className="flex items-center gap-3 justify-center lg:justify-start">
-                <MapPin size={16} />
-                <span>Toronto, Canada</span>
-              </div>
-            </div>
-
-            <Button size="lg" className="w-full rounded-full bg-white text-black hover:bg-zinc-200" asChild>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                <Download className="mr-2 w-4 h-4" />
-                Download CV
-              </a>
-            </Button>
+      <div className="editorial-container">
+        {/* Header */}
+        <section className="flex flex-col md:flex-row justify-between items-baseline gap-10 mb-32 border-b border-border pb-20">
+          <motion.h1 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="text-6xl md:text-9xl font-serif font-bold tracking-tighter"
+          >
+            The <span className="italic font-light">Index.</span>
+          </motion.h1>
+          
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex gap-4"
+          >
+            <a 
+              href="/resume.pdf" 
+              className="flex items-center gap-2 px-6 py-3 border border-ink text-sm uppercase tracking-widest hover:bg-ink hover:text-paper transition-all"
+            >
+              <Download size={14} />
+              Download PDF
+            </a>
           </motion.div>
+        </section>
 
-          <motion.div variants={fadeInUp} className="glass rounded-[2.5rem] p-10">
-            <div className="flex items-center gap-3 mb-6">
-              <Code2 className="text-zinc-400" size={20} />
-              <h3 className="font-bold">Core Skills</h3>
+        {/* Experience Section */}
+        <section className="space-y-32">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <div className="lg:col-span-4">
+              <h2 className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground sticky top-40">Experience</h2>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {[
-                'Python', 'JavaScript', 'TypeScript', 'Java', 'C', 'PHP',
-                'React', 'Next.js', 'Node.js', 'PostgreSQL', 'MongoDB', 
-                'Redis', 'Docker', 'Kubernetes', 'CI/CD'
-              ].map(skill => (
-                <span key={skill} className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-zinc-400">
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        </motion.section>
-
-        {/* Main Content */}
-        <motion.section 
-          variants={stagger}
-          initial="initial"
-          animate="animate"
-          className="lg:col-span-8 space-y-12"
-        >
-          {/* Experience */}
-          <motion.div variants={fadeInUp} className="space-y-8">
-            <div className="flex items-center gap-4 mb-2">
-              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
-                <Briefcase className="text-white" size={20} />
-              </div>
-              <h2 className="text-3xl font-bold tracking-tight">Experience</h2>
-            </div>
-            
-            <div className="space-y-10 pl-2">
+            <div className="lg:col-span-8 space-y-24">
               {[
                 {
-                  role: "Founder & Lead Engineer",
-                  company: "CAYDE SERVICES INC.",
-                  period: "2022 - Present",
-                  description: "Bootstrapped and led a Canadian software company delivering government and campus-scale solutions. Built and scaled yuMeet, a university social platform with real-time messaging and event matchmaking."
+                  role: "Founder & CTO",
+                  company: "Stealth Startup",
+                  period: "2023 — Present",
+                  desc: "Leading the architectural design and implementation of a next-generation data platform. Orchestrating high-performance systems and managing product strategy.",
+                  stack: ["Next.js", "Rust", "PostgreSQL", "AWS"]
                 },
                 {
-                  role: "Senior Full-Stack Developer",
-                  company: "Wood Manufacturer",
-                  period: "Feb 2024 - Present",
-                  description: "Led a team of 5 developers in refactoring an internal system using PHP and JavaScript, improving performance by 40%. Architected and optimized database structures."
+                  role: "Software Architect",
+                  company: "Enterprise Solutions",
+                  period: "2021 — 2023",
+                  desc: "Revolutionized core infrastructure, improving system latency by 40% and scaling to handle 5M+ monthly active users.",
+                  stack: ["Node.js", "Kubernetes", "Redis", "Terraform"]
                 },
                 {
-                  role: "Senior Full-Stack Developer & Team Lead",
-                  company: "Lightring AI",
-                  period: "Nov 2022 - Present",
-                  description: "Directed development of critical projects for government and healthcare sectors. Introduced CI/CD pipelines and DevOps practices, reducing deployment times by 50%."
+                  role: "Lead Frontend Engineer",
+                  company: "Creative Labs",
+                  period: "2019 — 2021",
+                  desc: "Designed and developed high-fidelity user interfaces and design systems for global clients in the luxury and tech sectors.",
+                  stack: ["React", "TypeScript", "Framer Motion", "Tailwind"]
                 }
               ].map((job, i) => (
-                <div key={i} className="relative pl-8 border-l border-zinc-800 space-y-2">
-                  <div className="absolute left-[-5px] top-2 w-2 h-2 rounded-full bg-zinc-700" />
-                  <div className="flex flex-wrap justify-between items-baseline gap-2">
-                    <h3 className="text-xl font-bold text-white">{job.role}</h3>
-                    <span className="text-sm font-medium text-zinc-500">{job.period}</span>
+                <motion.div 
+                  key={i}
+                  {...fadeInUp}
+                  className="group space-y-6"
+                >
+                  <div className="flex justify-between items-baseline border-b border-border pb-4 group-hover:border-ink transition-colors">
+                    <h3 className="text-3xl font-serif italic">{job.role}</h3>
+                    <span className="text-sm font-sans text-muted-foreground">{job.period}</span>
                   </div>
-                  <p className="text-zinc-400 font-medium">{job.company}</p>
-                  <p className="text-zinc-500 leading-relaxed text-sm md:text-base">
-                    {job.description}
-                  </p>
-                </div>
+                  <div className="flex flex-col md:flex-row justify-between gap-10">
+                    <div className="flex-1 space-y-4">
+                      <h4 className="text-xl font-sans font-bold">{job.company}</h4>
+                      <p className="text-muted-foreground leading-relaxed max-w-xl">
+                        {job.desc}
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-2 h-fit max-w-[200px]">
+                      {job.stack.map(tech => (
+                        <span key={tech} className="text-[10px] uppercase tracking-widest px-2 py-1 bg-muted rounded-sm">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          {/* Key Projects */}
-          <motion.div variants={fadeInUp} className="space-y-8 pt-4">
-             <div className="flex items-center gap-4 mb-2">
-              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
-                <FileText className="text-white" size={20} />
-              </div>
-              <h2 className="text-3xl font-bold tracking-tight">Key Projects</h2>
+          {/* Education & Skills */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-32 border-t border-border">
+            <div className="lg:col-span-4">
+              <h2 className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">Expertise</h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                { title: "yuMeet", desc: "Campus Social App with 55k+ users." },
-                { title: "Enterprise Billing", desc: "100k+ daily transactions for Iraq Gov." },
-                { title: "E-Visa Platform", desc: "Reducing processing time by 40%." },
-                { title: "Auction Platform", desc: "Real-time bidding with $500k+ volume." }
-              ].map((proj, i) => (
-                <div key={i} className="glass p-6 rounded-3xl border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                  <h4 className="font-bold mb-2 text-white">{proj.title}</h4>
-                  <p className="text-zinc-500 text-sm leading-relaxed">{proj.desc}</p>
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-20">
+              <div className="space-y-10">
+                <h3 className="text-2xl font-serif italic">Technical Proficiency</h3>
+                <div className="space-y-8">
+                  {[
+                    { cat: "Languages", items: "TypeScript, JavaScript, Rust, Python, Go" },
+                    { cat: "Frameworks", items: "Next.js, React, Node.js, Express, Fastify" },
+                    { cat: "Data", items: "PostgreSQL, MongoDB, Redis, Prisma, Drizzle" },
+                    { cat: "Cloud", items: "AWS, Vercel, Docker, CI/CD, Terraform" }
+                  ].map((skill, i) => (
+                    <div key={i} className="space-y-2">
+                      <h4 className="text-[10px] uppercase tracking-widest font-bold">{skill.cat}</h4>
+                      <p className="text-sm text-muted-foreground">{skill.items}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Education */}
-          <motion.div variants={fadeInUp} className="space-y-8 pt-4 pb-10">
-            <div className="flex items-center gap-4 mb-2">
-              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
-                <GraduationCap className="text-white" size={20} />
               </div>
-              <h2 className="text-3xl font-bold tracking-tight">Education</h2>
+              <div className="space-y-10">
+                <h3 className="text-2xl font-serif italic">Soft Disciplines</h3>
+                <div className="space-y-8">
+                  {[
+                    { cat: "Leadership", items: "Team Management, Mentorship, Tech Lead" },
+                    { cat: "Product", items: "Strategy, Roadmap Planning, UX Research" },
+                    { cat: "Methods", items: "Agile, Scrum, TDD, Domain Driven Design" },
+                    { cat: "Other", items: "Public Speaking, Technical Writing" }
+                  ].map((skill, i) => (
+                    <div key={i} className="space-y-2">
+                      <h4 className="text-[10px] uppercase tracking-widest font-bold">{skill.cat}</h4>
+                      <p className="text-sm text-muted-foreground">{skill.items}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="glass p-8 rounded-[2rem] border-zinc-800/50">
-              <h3 className="text-xl font-bold text-white">York University</h3>
-              <p className="text-zinc-400">Bachelor of Engineering - Software Engineering</p>
+          </div>
+        </section>
+
+        {/* Closing CTA */}
+        <section className="py-64 border-t border-border mt-32">
+          <motion.div {...fadeInUp} className="max-w-4xl">
+            <h2 className="text-4xl md:text-7xl font-serif leading-tight mb-12">
+              Looking for an architect <br /> to lead your <span className="italic">next venture?</span>
+            </h2>
+            <div className="flex gap-8">
+              <a href="mailto:ahmedkhafaji11@gmail.com" className="text-xl font-serif italic link-underline">
+                Let&apos;s discuss the details.
+              </a>
             </div>
           </motion.div>
-        </motion.section>
+        </section>
       </div>
     </Layout>
   );
