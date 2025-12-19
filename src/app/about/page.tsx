@@ -33,29 +33,29 @@ export default function About() {
             className="lg:col-span-7 space-y-12"
           >
             <p className="text-3xl md:text-5xl font-serif leading-[1.1] tracking-tight">
-              Ahmed Khafaji is a structuralist in a digital age. Based in Toronto, he designs systems that possess the permanence of stone and the fluidity of light.
+              Ahmed Khafaji is a software architect and founder focused on the intersection of technical excellence and brand storytelling.
             </p>
             
             <div className="space-y-8 text-lg text-muted-foreground leading-relaxed max-w-2xl font-light">
               <p>
-                Engineering is a discipline of authority. Whether architecting the yuMeet campus ecosystem for 55,000+ users or building national-scale billing infrastructure for ministries, Ahmed treats code as a physical material—something to be carved, reinforced, and polished.
+                My journey in technology began with a fascination for systems—how they scale, how they fail, and how they can be refined into something elegant. Today, I translate that fascination into digital products that solve complex problems for high-growth ventures.
               </p>
               <p>
-                His approach is defined by structural integrity. It is the belief that a system’s beauty is found in its resilience. By migrating monolithic chaos into the precision of microservices and streamlining $2M+ monthly transaction volumes, he creates digital monuments that stand the test of operational gravity.
+                I believe that software should be as beautiful on the inside as it is on the outside. This means rigorous type-safety, modular architecture, and a relentless focus on performance. But beyond the code, I am a builder at heart, always looking for the most efficient path from idea to impact.
               </p>
               <p>
-                He does not simply write software; he architects environments where technology and human utility coexist in a state of high-performance equilibrium.
+                Currently, I am exploring the boundaries of edge computing and AI integration, seeking ways to make the digital world feel more responsive and human.
               </p>
             </div>
 
             <div className="pt-24 border-t border-border/50">
-              <h3 className="text-[10px] uppercase tracking-[0.5em] mb-12 text-muted-foreground">The Manifesto</h3>
+              <h3 className="text-[10px] uppercase tracking-[0.5em] mb-12 text-muted-foreground">Philosophy</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
                 {[
-                  { title: "Structuralism", desc: "Code is infrastructure. I prioritize type-safety and modularity as the foundational load-bearing walls of any system." },
-                  { title: "Kinetic Efficiency", desc: "Friction is the enemy of progress. I design CI/CD pipelines and deployment flows that move with intentional velocity." },
-                  { title: "Digital Tactility", desc: "Even the most complex backend must feel intuitive. I build for the human on the other side of the screen." },
-                  { title: "Edge Resilience", desc: "True architecture is local-first. Systems must remain standing even when the network fails." }
+                  { title: "Precision", desc: "Every line of code is a design decision. I value clarity over cleverness." },
+                  { title: "Velocity", desc: "Shipping is a feature. I build systems that enable rapid iteration without debt." },
+                  { title: "Empathy", desc: "Software is for people. If it doesn't solve a human problem, it's just noise." },
+                  { title: "Scale", desc: "Architecture must breathe. I design for tomorrow's growth, today." }
                 ].map((item, i) => (
                   <div key={i} className="group">
                     <h4 className="font-serif text-2xl mb-3 group-hover:italic transition-all duration-300">{item.title}</h4>
@@ -75,7 +75,7 @@ export default function About() {
               <div className="aspect-[4/5] relative bg-zinc-100 grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out overflow-hidden border border-border">
                 <Image 
                   src="/selfie.png" 
-                  alt="Ahmed Profile" 
+                  alt="Ahmed Portrait" 
                   fill 
                   className="object-cover scale-105 hover:scale-100 transition-transform duration-1000"
                   priority
@@ -85,25 +85,37 @@ export default function About() {
             </div>
 
             <div className="space-y-12">
-              <h3 className="text-[10px] uppercase tracking-[0.5em] border-b border-border pb-4 text-muted-foreground">Operational Impact</h3>
+              <h3 className="text-[10px] uppercase tracking-[0.5em] border-b border-border pb-4 text-muted-foreground">In Numbers</h3>
               <div className="grid grid-cols-1 gap-12">
                 <div>
-                  <span className="block text-5xl font-serif font-light mb-1">55K<span className="text-sm align-top italic">+</span></span>
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">Human Connections via yuMeet</span>
+                  <span className="block text-5xl font-serif font-light mb-1">08<span className="text-sm align-top italic">+</span></span>
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">Years Experience</span>
                 </div>
                 <div>
-                  <span className="block text-5xl font-serif font-light mb-1">$2M<span className="text-sm align-top italic">+</span></span>
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">Monthly Fiscal Flow Processed</span>
+                  <span className="block text-5xl font-serif font-light mb-1">15<span className="text-sm align-top italic">+</span></span>
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">Ventures Launched</span>
                 </div>
                 <div>
-                  <span className="block text-5xl font-serif font-light mb-1">99.9<span className="text-sm align-top italic">%</span></span>
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">Architectural Uptime Guarantee</span>
+                  <span className="block text-5xl font-serif font-light mb-1">1M<span className="text-sm align-top italic">+</span></span>
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">Users Served</span>
+                </div>
+                <div>
+                  <span className="block text-5xl font-serif font-light mb-1">∞</span>
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">Curiosity</span>
                 </div>
               </div>
             </div>
 
             <div className="p-8 border border-border bg-zinc-50/50 italic text-sm text-muted-foreground font-serif leading-relaxed">
-              "To build is to commit. Every line of code is an architectural decision that dictates the future of the system."
+              Let&apos;s talk.
+              <div className="mt-4 not-italic font-sans text-xs space-y-2 uppercase tracking-widest">
+                <a href="mailto:ahmedkhafaji11@gmail.com" className="block hover:text-accent transition-colors">ahmedkhafaji11@gmail.com</a>
+                <div className="flex gap-4">
+                  <a href="https://github.com" target="_blank" className="hover:text-accent transition-colors">Github</a>
+                  <a href="https://linkedin.com" target="_blank" className="hover:text-accent transition-colors">LinkedIn</a>
+                  <a href="https://x.com" target="_blank" className="hover:text-accent transition-colors">X / Twitter</a>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
