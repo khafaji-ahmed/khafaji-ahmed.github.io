@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Layout from '../../components/Layout';
+import { Download } from 'lucide-react';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -29,9 +30,14 @@ export default function Resume() {
             animate={{ opacity: 1 }}
             className="flex gap-4"
           >
-            <button className="flex items-center gap-2 px-6 py-3 border border-ink text-sm uppercase tracking-widest hover:bg-ink hover:text-paper transition-all">
-              Download PDF
-            </button>
+            <a 
+              href="/resume.pdf" 
+              download
+              className="flex items-center gap-2 px-6 py-3 border border-ink bg-ink text-paper text-sm uppercase tracking-widest hover:bg-transparent hover:text-ink transition-all whitespace-nowrap"
+            >
+              <Download size={16} />
+              <span>Download PDF</span>
+            </a>
           </motion.div>
         </section>
 
