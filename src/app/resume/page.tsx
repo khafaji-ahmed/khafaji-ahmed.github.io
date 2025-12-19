@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Layout from '../../components/Layout';
+import { Download } from 'lucide-react';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -29,9 +30,13 @@ export default function Resume() {
             animate={{ opacity: 1 }}
             className="flex gap-4"
           >
-            <button className="flex items-center gap-2 px-6 py-3 border border-ink text-sm uppercase tracking-widest hover:bg-ink hover:text-paper transition-all">
+            <a 
+              href="/resume.pdf" 
+              className="flex items-center gap-2 px-6 py-3 border border-ink text-sm uppercase tracking-widest hover:bg-ink hover:text-paper transition-all"
+            >
+              <Download size={14} />
               Download PDF
-            </button>
+            </a>
           </motion.div>
         </section>
 
@@ -48,7 +53,7 @@ export default function Resume() {
                   company: "Distinctive Wood Products",
                   period: "2024 — Present",
                   desc: "Modernizing legacy infrastructure and internal systems. Engineered custom high-efficiency tools reducing query latency by 30% and eliminating manual bottlenecks for 50+ daily users.",
-                  stack: ["Next.js", "PHP", "SQL", "Microservices"]
+                  stack: ["PHP", "JavaScript", "SQL", "Microservices"]
                 },
                 {
                   role: "Senior Developer & Team Lead",
@@ -101,8 +106,8 @@ export default function Resume() {
             </div>
             <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-20">
               <div className="space-y-10">
-                <h3 className="text-2xl font-serif italic border-b border-border pb-4">Technical Proficiency</h3>
-                <div className="space-y-12">
+                <h3 className="text-2xl font-serif italic">Technical Proficiency</h3>
+                <div className="space-y-8">
                   {[
                     { cat: "Languages", items: "TypeScript, JavaScript, Python, PHP, SQL, Java, C" },
                     { cat: "Frameworks", items: "Next.js, React, Node.js, Express, React Native" },
@@ -110,24 +115,24 @@ export default function Resume() {
                     { cat: "Cloud", items: "AWS, Google Cloud, Docker, Kubernetes, Jenkins" }
                   ].map((skill, i) => (
                     <div key={i} className="space-y-2">
-                      <h4 className="text-[10px] uppercase tracking-widest font-bold opacity-50">{skill.cat}</h4>
-                      <p className="text-lg font-sans tracking-tight leading-snug">{skill.items}</p>
+                      <h4 className="text-[10px] uppercase tracking-widest font-bold">{skill.cat}</h4>
+                      <p className="text-sm text-muted-foreground">{skill.items}</p>
                     </div>
                   ))}
                 </div>
               </div>
               <div className="space-y-10">
-                <h3 className="text-2xl font-serif italic border-b border-border pb-4">Soft Disciplines</h3>
-                <div className="space-y-12">
+                <h3 className="text-2xl font-serif italic">Soft Disciplines</h3>
+                <div className="space-y-8">
                   {[
-                    { cat: "Leadership", items: "Team Management, Mentorship, Hiring" },
+                    { cat: "Leadership", items: "Team Management, Mentorship, Tech Lead" },
                     { cat: "Product", items: "Strategy, Roadmap Planning, UX Research" },
-                    { cat: "Methods", items: "Microservices, CI/CD, Offline-First, Agile" },
+                    { cat: "Methods", items: "Agile, Scrum, TDD, Domain Driven Design" },
                     { cat: "Other", items: "Public Speaking, Technical Writing" }
                   ].map((skill, i) => (
                     <div key={i} className="space-y-2">
-                      <h4 className="text-[10px] uppercase tracking-widest font-bold opacity-50">{skill.cat}</h4>
-                      <p className="text-lg font-sans tracking-tight leading-snug">{skill.items}</p>
+                      <h4 className="text-[10px] uppercase tracking-widest font-bold">{skill.cat}</h4>
+                      <p className="text-sm text-muted-foreground">{skill.items}</p>
                     </div>
                   ))}
                 </div>
@@ -138,30 +143,24 @@ export default function Resume() {
 
         {/* Closing CTA */}
         <section className="py-64 border-t border-border mt-32">
-          <motion.div {...fadeInUp} className="max-w-4xl text-center md:text-left mx-auto md:mx-0">
-            <h2 className="text-5xl md:text-8xl font-serif leading-[0.9] tracking-tighter mb-12">
-              Looking for an <span className="italic font-light">architect</span> <br /> 
-              to lead your next <span className="italic font-light">venture?</span>
+          <motion.div {...fadeInUp} className="max-w-4xl">
+            <h2 className="text-4xl md:text-7xl font-serif leading-tight mb-12">
+              Looking for an architect <br /> to lead your <span className="italic">next venture?</span>
             </h2>
-            <div className="space-y-6">
-              <p className="text-xl text-muted-foreground font-serif italic">Let&apos;s discuss the details.</p>
-              <div className="flex flex-col md:flex-row gap-8 items-center md:items-baseline">
-                <a href="mailto:ahmedkhafaji11@gmail.com" className="text-3xl md:text-4xl font-serif link-underline">
-                  Let&apos;s talk.
-                </a>
-                <span className="hidden md:block text-muted-foreground">/</span>
-                <span className="text-xl font-sans tracking-tighter">ahmedkhafaji11@gmail.com</span>
-              </div>
+            <div className="flex gap-8">
+              <a href="mailto:ahmedkhafaji11@gmail.com" className="text-xl font-serif italic link-underline">
+                Let&apos;s discuss the details.
+              </a>
             </div>
           </motion.div>
         </section>
 
-        {/* Footer info as requested */}
+        {/* Footer */}
         <footer className="py-20 border-t border-border flex flex-col md:flex-row justify-between gap-10 text-[10px] uppercase tracking-[0.3em]">
           <div className="flex gap-8">
             <a href="https://github.com/khafaji-ahmed" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">Github</a>
             <a href="https://linkedin.com/in/ahmed-khafaji" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">LinkedIn</a>
-            <a href="#" className="hover:text-muted-foreground transition-colors">X / Twitter</a>
+            <a href="https://x.com/khafajiahmed" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">X / Twitter</a>
           </div>
           <div className="flex flex-col md:flex-row gap-4 md:gap-10">
             <span>© 2025 Ahmed Khafaji</span>
