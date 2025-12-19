@@ -44,10 +44,10 @@ export default function Resume() {
             <div className="lg:col-span-8 space-y-24">
               {[
                 {
-                  role: "Founder & CTO",
+                  role: "Founder & Principal Architect",
                   company: "Distinctive Wood Products",
                   period: "2024 — Present",
-                  desc: "Leading the architectural design and implementation of next-generation industrial platforms. Orchestrating high-performance systems and managing product strategy.",
+                  desc: "Solely responsible for the architectural evolution and implementation of next-generation industrial platforms. Orchestrating high-performance systems and managing end-to-end product strategy.",
                   stack: ["Next.js", "PHP", "PostgreSQL", "AWS"]
                 },
                 {
@@ -58,10 +58,10 @@ export default function Resume() {
                   stack: ["Node.js", "Kubernetes", "Redis", "Terraform"]
                 },
                 {
-                  role: "Lead Frontend Engineer",
+                  role: "Founder & Principal Architect",
                   company: "Cayde Services Inc.",
                   period: "2020 — 2022",
-                  desc: "Designed and developed high-fidelity user interfaces and real-time synchronization systems for 55,000+ users across mission-critical platforms.",
+                  desc: "Established and led the technical vision for high-fidelity user interfaces and real-time synchronization systems, serving 55,000+ users across mission-critical platforms.",
                   stack: ["React Native", "TypeScript", "Framer Motion", "Tailwind"]
                 }
               ].map((job, i) => (
