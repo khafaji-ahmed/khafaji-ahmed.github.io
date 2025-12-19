@@ -15,9 +15,10 @@ const navLinks = [
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const pathname = usePathname();
+    const pathname = usePathname();
+    const normalizedPathname = pathname.replace(/\/$/, '') || '/';
 
-  useEffect(() => {
+    useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -43,13 +44,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Link 
                 key={link.name} 
                 href={link.href}
-                className={cn(
-                  "text-sm font-sans uppercase tracking-[0.2em] transition-colors hover:text-accent relative",
-                  pathname === link.href ? "text-ink font-bold" : "text-muted-foreground"
-                )}
-              >
-                {link.name}
-                {pathname === link.href && (
+                  className={cn(
+                    "text-sm font-sans uppercase tracking-[0.2em] transition-colors hover:text-accent relative",
+                    normalizedPathname === link.href ? "text-ink font-bold" : "text-muted-foreground"
+                  )}
+                >
+                  {link.name}
+                  {normalizedPathname === link.href && (
                   <motion.span 
                     layoutId="nav-underline"
                     className="absolute -bottom-1 left-0 w-full h-[1px] bg-accent"
