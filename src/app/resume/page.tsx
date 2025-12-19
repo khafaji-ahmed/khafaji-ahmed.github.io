@@ -44,25 +44,25 @@ export default function Resume() {
             <div className="lg:col-span-8 space-y-24">
               {[
                 {
-                  role: "Founder & CTO",
-                  company: "Stealth Startup",
-                  period: "2023 — Present",
-                  desc: "Leading the architectural design and implementation of a next-generation data platform. Orchestrating high-performance systems and managing product strategy.",
-                  stack: ["Next.js", "Rust", "PostgreSQL", "AWS"]
+                  role: "Full-Stack Software Engineer",
+                  company: "Distinctive Wood Products",
+                  period: "2024 — Present",
+                  desc: "Modernizing legacy infrastructure and internal systems. Engineered custom high-efficiency tools reducing query latency by 30% and eliminating manual bottlenecks for 50+ daily users.",
+                  stack: ["Next.js", "PHP", "SQL", "Microservices"]
                 },
                 {
-                  role: "Software Architect",
-                  company: "Enterprise Solutions",
-                  period: "2021 — 2023",
-                  desc: "Revolutionized core infrastructure, improving system latency by 40% and scaling to handle 5M+ monthly active users.",
-                  stack: ["Node.js", "Kubernetes", "Redis", "Terraform"]
+                  role: "Senior Developer & Team Lead",
+                  company: "Lightring AI",
+                  period: "2022 — 2023",
+                  desc: "Led a cross-functional team of 4 to deliver high-stakes government and healthcare solutions. Orchestrated CI/CD pipelines on AWS, slashing deployment time by 50% with zero-downtime releases.",
+                  stack: ["React", "AWS", "Node.js", "Jenkins"]
                 },
                 {
-                  role: "Lead Frontend Engineer",
-                  company: "Creative Labs",
-                  period: "2019 — 2021",
-                  desc: "Designed and developed high-fidelity user interfaces and design systems for global clients in the luxury and tech sectors.",
-                  stack: ["React", "TypeScript", "Framer Motion", "Tailwind"]
+                  role: "Founder & Lead Engineer",
+                  company: "Cayde Services Inc.",
+                  period: "2020 — 2022",
+                  desc: "Bootstrapped a software house delivering mission-critical campus solutions. Architected and scaled the yuMeet platform to 55,000+ users with real-time systems and offline-first data synchronization.",
+                  stack: ["React Native", "Next.js", "PostgreSQL", "Socket.IO"]
                 }
               ].map((job, i) => (
                 <motion.div 
@@ -104,10 +104,10 @@ export default function Resume() {
                 <h3 className="text-2xl font-serif italic border-b border-border pb-4">Technical Proficiency</h3>
                 <div className="space-y-12">
                   {[
-                    { cat: "Languages", items: "TypeScript, JavaScript, Rust, Python, Go" },
-                    { cat: "Frameworks", items: "Next.js, React, Node.js, Express, Fastify" },
-                    { cat: "Data", items: "PostgreSQL, MongoDB, Redis, Prisma, Drizzle" },
-                    { cat: "Cloud", items: "AWS, Vercel, Docker, CI/CD, Terraform" }
+                    { cat: "Languages", items: "TypeScript, JavaScript, Python, PHP, SQL, Java, C" },
+                    { cat: "Frameworks", items: "Next.js, React, Node.js, Express, React Native" },
+                    { cat: "Data", items: "PostgreSQL, MongoDB, Redis, MySQL" },
+                    { cat: "Cloud", items: "AWS, Google Cloud, Docker, Kubernetes, Jenkins" }
                   ].map((skill, i) => (
                     <div key={i} className="space-y-2">
                       <h4 className="text-[10px] uppercase tracking-widest font-bold opacity-50">{skill.cat}</h4>
@@ -120,9 +120,9 @@ export default function Resume() {
                 <h3 className="text-2xl font-serif italic border-b border-border pb-4">Soft Disciplines</h3>
                 <div className="space-y-12">
                   {[
-                    { cat: "Leadership", items: "Team Management, Mentorship, Tech Lead" },
+                    { cat: "Leadership", items: "Team Management, Mentorship, Hiring" },
                     { cat: "Product", items: "Strategy, Roadmap Planning, UX Research" },
-                    { cat: "Methods", items: "Agile, Scrum, TDD, Domain Driven Design" },
+                    { cat: "Methods", items: "Microservices, CI/CD, Offline-First, Agile" },
                     { cat: "Other", items: "Public Speaking, Technical Writing" }
                   ].map((skill, i) => (
                     <div key={i} className="space-y-2">
@@ -160,7 +160,7 @@ export default function Resume() {
         <footer className="py-20 border-t border-border flex flex-col md:flex-row justify-between gap-10 text-[10px] uppercase tracking-[0.3em]">
           <div className="flex gap-8">
             <a href="https://github.com/khafaji-ahmed" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">Github</a>
-            <a href="#" className="hover:text-muted-foreground transition-colors">LinkedIn</a>
+            <a href="https://linkedin.com/in/ahmed-khafaji" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">LinkedIn</a>
             <a href="#" className="hover:text-muted-foreground transition-colors">X / Twitter</a>
           </div>
           <div className="flex flex-col md:flex-row gap-4 md:gap-10">
