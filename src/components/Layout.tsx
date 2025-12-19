@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import CustomCursor from './CustomCursor';
 
 const navLinks = [
   { name: 'Index', href: '/' },
@@ -22,9 +23,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return (
-    <div className="min-h-screen selection:bg-accent/20">
-      {/* Navigation */}
+    return (
+      <div className="min-h-screen selection:bg-accent/20">
+        <CustomCursor />
+        {/* Navigation */}
+
       <nav className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-500 py-8",
         isScrolled ? "bg-paper/80 backdrop-blur-md py-4 border-b border-border" : "bg-transparent"
@@ -58,11 +61,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </nav>
 
-      {/* Main Content */}
       <main className="pt-32 pb-20">
-        <div className="noise-bg min-h-screen">
-          {children}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={pathname}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="noise-bg min-h-screen"
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
       </main>
 
       {/* Minimal Footer */}

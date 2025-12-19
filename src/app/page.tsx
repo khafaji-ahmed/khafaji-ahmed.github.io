@@ -1,19 +1,45 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { ArrowRight, Github, Mail, Globe, ExternalLink } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Code, Layout as LayoutIcon, Cpu, Layers } from 'lucide-react';
 import Layout from '../components/Layout';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { useState } from 'react';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" }
+  transition: { duration: 0.8, ease: "easeOut" }
 };
 
+const processSteps = [
+  {
+    title: "Archetype",
+    icon: <LayoutIcon className="w-6 h-6" />,
+    desc: "Defining the core visual and structural identity through conceptual wireframing and design-led strategy."
+  },
+  {
+    title: "Blueprint",
+    icon: <Layers className="w-6 h-6" />,
+    desc: "Architecting the technical stack with precision—choosing the right tools for scalability and longevity."
+  },
+  {
+    title: "Fabrication",
+    icon: <Code className="w-6 h-6" />,
+    desc: "Crafting clean, type-safe, and high-performance code that brings the architectural vision to life."
+  },
+  {
+    title: "Integration",
+    icon: <Cpu className="w-6 h-6" />,
+    desc: "Deployment and optimization, ensuring seamless performance across all digital environments."
+  }
+];
+
 export default function Home() {
+  const [hoveredWork, setHoveredWork] = useState<number | null>(null);
+
   return (
     <Layout>
       <div className="editorial-container space-y-40 md:space-y-64">
@@ -121,6 +147,43 @@ export default function Home() {
           </motion.div>
         </section>
 
+        {/* Process Section - NEW */}
+        <section className="relative py-20">
+          <div className="absolute inset-0 blueprint-grid opacity-30 -z-10" />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-20">
+            <div className="lg:col-span-6">
+              <h2 className="text-5xl font-serif italic mb-6">The Methodology</h2>
+              <p className="text-muted-foreground text-lg max-w-md">
+                A rigorous, four-stage approach to digital construction. From the first sketch to the final deployment.
+              </p>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+            {processSteps.map((step, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-paper p-10 space-y-6 group hover:bg-accent hover:text-paper transition-colors duration-500"
+              >
+                <div className="text-accent group-hover:text-paper transition-colors">
+                  {step.icon}
+                </div>
+                <h3 className="text-2xl font-serif italic">{step.title}</h3>
+                <p className="text-sm leading-relaxed opacity-80">
+                  {step.desc}
+                </p>
+                <div className="pt-4 text-[10px] uppercase tracking-widest opacity-40">
+                  Phase 0{i + 1}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
         {/* Work / Index Preview */}
         <section>
           <div className="flex justify-between items-baseline mb-20 border-b border-border pb-10">
@@ -128,37 +191,57 @@ export default function Home() {
             <a href="/resume" className="text-xs uppercase tracking-[0.3em] link-underline">View Full Index</a>
           </div>
           
-          <div className="space-y-32">
+          <div className="space-y-12">
             {[
               {
                 title: "Venture Architecture",
                 category: "Product / Strategy",
                 year: "2024",
-                desc: "Scaling digital products from zero to market leader with a focus on core infrastructure and performance."
+                desc: "Scaling digital products from zero to market leader with a focus on core infrastructure and performance.",
+                tech: "Next.js, Tailwind, Supabase, Vercel"
               },
               {
                 title: "High-Performance Systems",
                 category: "Engineering / Backend",
                 year: "2023",
-                desc: "Designing low-latency data pipelines and distributed systems that handle millions of requests with precision."
+                desc: "Designing low-latency data pipelines and distributed systems that handle millions of requests with precision.",
+                tech: "Node.js, Redis, PostgreSQL, AWS"
               }
             ].map((work, i) => (
               <motion.div 
                 key={i}
                 {...fadeInUp}
-                className="group cursor-pointer grid grid-cols-1 lg:grid-cols-12 gap-10 py-10 border-b border-border/50 hover:border-ink transition-colors"
+                onMouseEnter={() => setHoveredWork(i)}
+                onMouseLeave={() => setHoveredWork(null)}
+                className="group cursor-pointer relative grid grid-cols-1 lg:grid-cols-12 gap-10 py-16 border-b border-border/50 hover:border-ink transition-all duration-500"
               >
                 <div className="lg:col-span-1 text-[10px] uppercase tracking-widest text-muted-foreground pt-2">
                   0{i + 1}
                 </div>
                 <div className="lg:col-span-5">
-                  <h3 className="text-4xl md:text-6xl font-serif group-hover:italic transition-all duration-300">{work.title}</h3>
+                  <h3 className="text-4xl md:text-7xl font-serif group-hover:italic transition-all duration-500 leading-none">{work.title}</h3>
+                  
+                  {/* Blueprint Reveal on Hover */}
+                  <AnimatePresence>
+                    {hoveredWork === i && (
+                      <motion.div 
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="pt-6 text-accent font-mono text-xs uppercase tracking-widest">
+                          [ {work.tech} ]
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-                <div className="lg:col-span-4 text-muted-foreground text-sm leading-relaxed pt-2">
+                <div className="lg:col-span-4 text-muted-foreground text-lg leading-relaxed pt-2">
                   {work.desc}
                 </div>
                 <div className="lg:col-span-2 text-right text-[10px] uppercase tracking-widest pt-2">
-                  <span className="block mb-1">{work.category}</span>
+                  <span className="block mb-1 font-bold">{work.category}</span>
                   <span className="text-muted-foreground/50">{work.year}</span>
                 </div>
               </motion.div>
