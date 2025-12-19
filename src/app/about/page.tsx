@@ -106,17 +106,6 @@ export default function About() {
               </div>
             </div>
 
-            <div className="p-8 border border-border bg-zinc-50/50 italic text-sm text-muted-foreground font-serif leading-relaxed">
-              Let&apos;s talk.
-              <div className="mt-4 not-italic font-sans text-xs space-y-2 uppercase tracking-widest">
-                <a href="mailto:ahmedkhafaji11@gmail.com" className="block hover:text-accent transition-colors">ahmedkhafaji11@gmail.com</a>
-                <div className="flex gap-4">
-                  <a href="https://github.com" target="_blank" className="hover:text-accent transition-colors">Github</a>
-                  <a href="https://linkedin.com" target="_blank" className="hover:text-accent transition-colors">LinkedIn</a>
-                  <a href="https://x.com" target="_blank" className="hover:text-accent transition-colors">X / Twitter</a>
-                </div>
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>
