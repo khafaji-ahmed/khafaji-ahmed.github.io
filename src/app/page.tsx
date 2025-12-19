@@ -37,30 +37,6 @@ const processSteps = [
   }
 ];
 
-const selectedWorks = [
-  {
-    title: "Enterprise Billing System",
-    category: "Fintech / Infrastructure",
-    year: "2024",
-    desc: "Architected a government-grade billing system for the Iraq Ministry of Finance, processing 100k+ daily transactions with <100ms latency.",
-    tech: "Next.js, Node.js, PostgreSQL, AWS"
-  },
-  {
-    title: "yuMeet Social Platform",
-    category: "Social / Scalability",
-    year: "2025",
-    desc: "Engineered a campus social ecosystem for 55,000+ York University users, featuring real-time messaging and offline-first architecture.",
-    tech: "React Native, Next.js, PostgreSQL, Socket.IO"
-  },
-  {
-    title: "Government E-Visa",
-    category: "Public Service / UX",
-    year: "2023",
-    desc: "Streamlined visa processing for 50,000+ monthly applicants, reducing processing time by 40% through automated fraud detection.",
-    tech: "Next.js, React, MongoDB, Fraud Detection AI"
-  }
-];
-
 export default function Home() {
   const [hoveredWork, setHoveredWork] = useState<number | null>(null);
 
@@ -76,7 +52,7 @@ export default function Home() {
                 animate={{ opacity: 1 }}
                 className="inline-block text-[10px] uppercase tracking-[0.5em] text-muted-foreground mb-6"
               >
-                Based in Toronto — Software Architect
+                Based in Toronto — Software Engineer
               </motion.span>
               <motion.h1 
                 initial={{ opacity: 0, y: 40 }}
@@ -97,7 +73,7 @@ export default function Home() {
                 transition={{ delay: 0.5, duration: 1 }}
                 className="text-xl text-muted-foreground leading-relaxed font-sans mb-10"
               >
-                Ahmed Khafaji leverages software engineering precision and entrepreneurial leadership to build high-stakes systems that process millions in transactions and serve tens of thousands of users.
+                Ahmed Khafaji combines architectural precision with entrepreneurial vision to build high-performance systems that define the next generation of web experience.
               </motion.p>
               
               <motion.div 
@@ -108,7 +84,7 @@ export default function Home() {
               >
                 <Button variant="link" className="p-0 h-auto text-lg font-serif italic link-underline group" asChild>
                   <a href="mailto:ahmedkhafaji11@gmail.com">
-                    Initialize Contact
+                    Get in touch 
                     <ArrowRight className="inline-block ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </a>
                 </Button>
@@ -138,32 +114,32 @@ export default function Home() {
             className="lg:col-span-7 order-1 lg:order-2 space-y-12"
           >
             <h2 className="text-4xl md:text-7xl font-serif leading-tight">
-              Engineering with <span className="italic">authority.</span>
+              A philosophy of <span className="italic">intent.</span>
             </h2>
             <div className="max-w-xl space-y-6 text-lg text-muted-foreground leading-relaxed">
               <p>
-                From founding Cayde Services to leading engineering teams at Lightring AI, I have focused on the intersection of technical robustness and commercial viability.
+                In an era of mass-produced code, I prioritize the artisanal. Every line is an architectural choice, every interaction a moment of brand expression.
               </p>
               <p>
-                Currently modernizing industrial systems at Distinctive Wood Products, I treat every codebase as a structural blueprint—designed for durability, clarity, and exceptional performance.
+                From founding startups to leading engineering teams, my focus remains constant: building scalable, type-safe, and visually arresting software that scales with your ambition.
               </p>
               <div className="pt-10 grid grid-cols-2 gap-10">
                 <div>
-                  <h4 className="text-[10px] uppercase tracking-widest font-sans mb-4 border-b border-border pb-2">Technical Core</h4>
+                  <h4 className="text-[10px] uppercase tracking-widest font-sans mb-4 border-b border-border pb-2">Core Stack</h4>
                   <ul className="text-sm space-y-2 text-ink">
-                    <li>TypeScript / Next.js</li>
-                    <li>Python / Node.js</li>
-                    <li>PostgreSQL / MongoDB</li>
-                    <li>AWS / Docker</li>
+                    <li>Next.js / React</li>
+                    <li>TypeScript / Node</li>
+                    <li>PostgreSQL / Redis</li>
+                    <li>AWS / Vercel</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-[10px] uppercase tracking-widest font-sans mb-4 border-b border-border pb-2">Verticals</h4>
+                  <h4 className="text-[10px] uppercase tracking-widest font-sans mb-4 border-b border-border pb-2">Disciplines</h4>
                   <ul className="text-sm space-y-2 text-ink">
-                    <li>Fintech Infrastructure</li>
-                    <li>Government Solutions</li>
-                    <li>Social Ecosystems</li>
-                    <li>Industrial Automation</li>
+                    <li>System Architecture</li>
+                    <li>Product Strategy</li>
+                    <li>UI/UX Engineering</li>
+                    <li>Cloud Infrastructure</li>
                   </ul>
                 </div>
               </div>
@@ -171,14 +147,14 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Process Section */}
+        {/* Process Section - NEW */}
         <section className="relative py-20">
           <div className="absolute inset-0 blueprint-grid opacity-30 -z-10" />
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-20">
             <div className="lg:col-span-6">
               <h2 className="text-5xl font-serif italic mb-6">The Methodology</h2>
               <p className="text-muted-foreground text-lg max-w-md">
-                A rigorous, architectural approach to software development. Ensuring every component serves a structural purpose.
+                A rigorous, four-stage approach to digital construction. From the first sketch to the final deployment.
               </p>
             </div>
           </div>
@@ -211,12 +187,27 @@ export default function Home() {
         {/* Work / Index Preview */}
         <section>
           <div className="flex justify-between items-baseline mb-20 border-b border-border pb-10">
-            <h2 className="text-5xl font-serif italic">Selected Artifacts</h2>
-            <a href="/resume" className="text-xs uppercase tracking-[0.3em] link-underline">The Full Index</a>
+            <h2 className="text-5xl font-serif italic">Selected Works</h2>
+            <a href="/resume" className="text-xs uppercase tracking-[0.3em] link-underline">View Full Index</a>
           </div>
           
           <div className="space-y-12">
-            {selectedWorks.map((work, i) => (
+            {[
+              {
+                title: "Enterprise Billing",
+                category: "Backend / Cloud",
+                year: "2024",
+                desc: "Architected government billing system processing 100k+ daily transactions for the Iraq Ministry of Finance.",
+                tech: "Next.js, Node.js, PostgreSQL, AWS"
+              },
+              {
+                title: "yuMeet Social",
+                category: "Mobile / Full-Stack",
+                year: "2025",
+                desc: "Led development for 55k+ users with real-time messaging and offline-first architecture for York University.",
+                tech: "React Native, Socket.IO, PostgreSQL"
+              }
+            ].map((work, i) => (
               <motion.div 
                 key={i}
                 {...fadeInUp}
@@ -230,6 +221,7 @@ export default function Home() {
                 <div className="lg:col-span-5">
                   <h3 className="text-4xl md:text-7xl font-serif group-hover:italic transition-all duration-500 leading-none">{work.title}</h3>
                   
+                  {/* Blueprint Reveal on Hover */}
                   <AnimatePresence>
                     {hoveredWork === i && (
                       <motion.div 
@@ -261,10 +253,10 @@ export default function Home() {
         <section className="py-40 text-center">
           <motion.div {...fadeInUp}>
             <h2 className="text-5xl md:text-[12rem] font-serif font-bold tracking-tighter leading-[0.8] mb-20">
-              Inquire <br /> <span className="italic font-light text-accent">Availability.</span>
+              Let&apos;s Build <br /> <span className="italic font-light text-accent">Something.</span>
             </h2>
             <Button size="lg" className="rounded-none bg-ink text-paper hover:bg-accent transition-colors px-12 h-16 text-lg font-sans uppercase tracking-[0.2em]" asChild>
-              <a href="mailto:ahmedkhafaji11@gmail.com">Contact</a>
+              <a href="mailto:ahmedkhafaji11@gmail.com">Initialize</a>
             </Button>
           </motion.div>
         </section>
