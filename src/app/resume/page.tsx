@@ -13,7 +13,7 @@ const fadeInUp = {
 
 export default function Resume() {
   return (
-    <Layout>
+    <Layout hideFooterCTA={true}>
       <div className="editorial-container">
         {/* Header */}
         <section className="flex flex-col md:flex-row justify-between items-baseline gap-10 mb-32 border-b border-border pb-20">
@@ -143,17 +143,22 @@ export default function Resume() {
         </section>
 
         {/* Closing CTA */}
-        <section className="py-40 text-center">
-          <motion.div {...fadeInUp}>
-            <h2 className="text-5xl md:text-[8rem] font-serif font-bold tracking-tighter leading-[0.8] mb-20">
-              Looking for a <br /> <span className="italic font-light text-accent">Software Architect?</span>
+        <section className="py-64 border-t border-border mt-32">
+          <motion.div {...fadeInUp} className="max-w-4xl text-center md:text-left mx-auto md:mx-0">
+            <h2 className="text-5xl md:text-8xl font-serif leading-[0.9] tracking-tighter mb-12">
+              Looking for an <span className="italic font-light">architect</span> <br /> 
+              to lead your next <span className="italic font-light">venture?</span>
             </h2>
-            <a 
-              href="mailto:cayde@cayde.ca"
-              className="inline-block px-12 py-5 bg-ink text-paper text-sm uppercase tracking-[0.3em] hover:bg-accent transition-colors"
-            >
-              Get in Touch
-            </a>
+            <div className="space-y-6">
+              <p className="text-xl text-muted-foreground font-serif italic">Let&apos;s discuss the details.</p>
+              <div className="flex flex-col md:flex-row gap-8 items-center md:items-baseline">
+                <a href="mailto:cayde@cayde.ca" className="text-3xl md:text-4xl font-serif link-underline">
+                  Let&apos;s talk.
+                </a>
+                <span className="hidden md:block text-muted-foreground">/</span>
+                <span className="text-xl font-sans tracking-tighter">cayde@cayde.ca</span>
+              </div>
+            </div>
           </motion.div>
         </section>
       </div>

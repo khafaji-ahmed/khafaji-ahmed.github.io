@@ -41,7 +41,7 @@ export default function Home() {
   const [hoveredWork, setHoveredWork] = useState<number | null>(null);
 
   return (
-    <Layout>
+    <Layout hideFooterCTA={true}>
       <div className="editorial-container space-y-40 md:space-y-64">
         {/* Editorial Hero */}
         <section className="relative pt-10 md:pt-20">
