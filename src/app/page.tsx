@@ -195,11 +195,11 @@ export default function Home() {
                 category: "Product / Strategy",
                 year: "2024",
                 desc: "Scaling digital products from zero to market leader with a focus on core infrastructure and performance.",
-                tech: "Go, TypeScript, Kubernetes, GCP"
+                tech: ""
               },
               {
                 title: "High-Performance Systems",
-                category: "System Architecture",
+                category: "Engineering",
                 year: "2025",
                 desc: "Designing low-latency data pipelines and distributed systems that handle millions of requests with precision.",
                 tech: "Node.js, Redis, PostgreSQL, AWS"
@@ -208,22 +208,28 @@ export default function Home() {
               <motion.div 
                 key={i}
                 {...fadeInUp}
+                onMouseEnter={() => setHoveredWork(i)}
+                onMouseLeave={() => setHoveredWork(null)}
                 className="group cursor-pointer relative grid grid-cols-1 lg:grid-cols-12 gap-10 py-16 border-b border-border/50 hover:border-ink transition-all duration-500"
               >
                 <div className="lg:col-span-1 text-[10px] uppercase tracking-widest text-muted-foreground pt-2">
                   0{i + 1}
                 </div>
-                <div className="lg:col-span-5">
+                <div className="lg:col-span-8">
                   <h3 className="text-4xl md:text-7xl font-serif group-hover:italic transition-all duration-500 leading-none mb-6">{work.title}</h3>
-                  <p className="text-accent font-mono text-[10px] uppercase tracking-widest opacity-70">
-                    [ {work.tech} ]
+                  
+                  {work.tech && (
+                    <p className="text-accent font-mono text-[10px] uppercase tracking-[0.3em] mb-6">
+                      [ {work.tech} ]
+                    </p>
+                  )}
+                  
+                  <p className="max-w-xl text-muted-foreground text-lg leading-relaxed">
+                    {work.desc}
                   </p>
                 </div>
-                <div className="lg:col-span-4 text-muted-foreground text-lg leading-relaxed pt-2">
-                  {work.desc}
-                </div>
-                <div className="lg:col-span-2 text-right text-[10px] uppercase tracking-widest pt-2">
-                  <span className="block mb-1 font-bold">{work.category}</span>
+                <div className="lg:col-span-3 lg:col-start-10 text-right text-[10px] uppercase tracking-widest pt-2">
+                  <span className="block mb-2 font-bold text-ink">{work.category}</span>
                   <span className="text-muted-foreground/50">{work.year}</span>
                 </div>
               </motion.div>
