@@ -1,22 +1,78 @@
 @import "tailwindcss";
 
 @theme {
-  --font-family-dm-sans: var(--font-dm-sans), sans-serif;
-  --font-family-montserrat: var(--font-montserrat), var(--font-dm-sans), sans-serif;
+  --font-family-jakarta: var(--font-jakarta), sans-serif;
+  --font-family-unbounded: var(--font-unbounded), sans-serif;
+  
+  --color-brand-primary: #ffffff;
+  --color-brand-secondary: #a1a1aa;
+  --color-brand-accent: #3b82f6;
+  --color-bg-main: #09090b;
+  --color-bg-secondary: #18181b;
 }
 
 :root {
-  --background: #212224;
-  --first-color: #fcfaf4;
-  --second-color: #f5a623ff;
-  --third-color: #c7c8c8;
-  --fourth-color: #111111;
-  --tile-color: #343639;
-  --tile-hover-color: #444647;
+  --background: #09090b;
+  --foreground: #ffffff;
+  --card: #18181b;
+  --card-foreground: #ffffff;
+  --popover: #09090b;
+  --popover-foreground: #ffffff;
+  --primary: #ffffff;
+  --primary-foreground: #09090b;
+  --secondary: #27272a;
+  --secondary-foreground: #ffffff;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  --accent: #27272a;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #d4d4d8;
+  --radius: 0.75rem;
 }
 
 body {
   background-color: var(--background);
-  color: var(--first-color);
-  font-family: var(--font-dm-sans), sans-serif;
+  color: var(--foreground);
+  font-family: var(--font-family-jakarta);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-unbounded);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.noise-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.05;
+  z-index: 9999;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+}
+
+.glass {
+  background: rgba(24, 24, 27, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-br from-white via-zinc-400 to-zinc-600;
 }
