@@ -1,11 +1,10 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowRight, Code, Layout as LayoutIcon, Cpu, Layers } from 'lucide-react';
 import Layout from '../components/Layout';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { useState } from 'react';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -38,8 +37,6 @@ const processSteps = [
 ];
 
 export default function Home() {
-  const [hoveredWork, setHoveredWork] = useState<number | null>(null);
-
   return (
     <Layout hideFooterCTA={true}>
       <div className="editorial-container space-y-40 md:space-y-64">
@@ -194,48 +191,33 @@ export default function Home() {
           <div className="space-y-12">
             {[
               {
-                title: "Enterprise Billing",
-                category: "Backend / Cloud",
+                title: "Venture Architecture",
+                category: "Product / Strategy",
                 year: "2024",
-                desc: "Architected government billing system processing 100k+ daily transactions for the Iraq Ministry of Finance.",
-                tech: "Next.js, Node.js, PostgreSQL, AWS"
+                desc: "Scaling digital products from zero to market leader with a focus on core infrastructure and performance.",
+                tech: "Go, TypeScript, Kubernetes, GCP"
               },
               {
-                title: "yuMeet Social",
-                category: "Mobile / Full-Stack",
+                title: "High-Performance Systems",
+                category: "System Architecture",
                 year: "2025",
-                desc: "Led development for 55k+ users with real-time messaging and offline-first architecture for York University.",
-                tech: "React Native, Socket.IO, PostgreSQL"
+                desc: "Designing low-latency data pipelines and distributed systems that handle millions of requests with precision.",
+                tech: "Node.js, Redis, PostgreSQL, AWS"
               }
             ].map((work, i) => (
               <motion.div 
                 key={i}
                 {...fadeInUp}
-                onMouseEnter={() => setHoveredWork(i)}
-                onMouseLeave={() => setHoveredWork(null)}
                 className="group cursor-pointer relative grid grid-cols-1 lg:grid-cols-12 gap-10 py-16 border-b border-border/50 hover:border-ink transition-all duration-500"
               >
                 <div className="lg:col-span-1 text-[10px] uppercase tracking-widest text-muted-foreground pt-2">
                   0{i + 1}
                 </div>
                 <div className="lg:col-span-5">
-                  <h3 className="text-4xl md:text-7xl font-serif group-hover:italic transition-all duration-500 leading-none">{work.title}</h3>
-                  
-                  {/* Blueprint Reveal on Hover */}
-                  <AnimatePresence>
-                    {hoveredWork === i && (
-                      <motion.div 
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="overflow-hidden"
-                      >
-                        <p className="pt-6 text-accent font-mono text-xs uppercase tracking-widest">
-                          [ {work.tech} ]
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  <h3 className="text-4xl md:text-7xl font-serif group-hover:italic transition-all duration-500 leading-none mb-6">{work.title}</h3>
+                  <p className="text-accent font-mono text-[10px] uppercase tracking-widest opacity-70">
+                    [ {work.tech} ]
+                  </p>
                 </div>
                 <div className="lg:col-span-4 text-muted-foreground text-lg leading-relaxed pt-2">
                   {work.desc}
