@@ -141,6 +141,21 @@ export default function Resume() {
             </div>
           </div>
         </section>
+
+        {/* Closing CTA */}
+        <section className="py-40 text-center">
+          <motion.div {...fadeInUp}>
+            <h2 className="text-5xl md:text-[8rem] font-serif font-bold tracking-tighter leading-[0.8] mb-20">
+              Looking for a <br /> <span className="italic font-light text-accent">Software Architect?</span>
+            </h2>
+            <a 
+              href="mailto:cayde@cayde.ca"
+              className="inline-block px-12 py-5 bg-ink text-paper text-sm uppercase tracking-[0.3em] hover:bg-accent transition-colors"
+            >
+              Get in Touch
+            </a>
+          </motion.div>
+        </section>
       </div>
     </Layout>
   );
