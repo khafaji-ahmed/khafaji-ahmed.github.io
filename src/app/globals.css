@@ -1,22 +1,129 @@
 @import "tailwindcss";
 
 @theme {
-  --font-family-dm-sans: var(--font-dm-sans), sans-serif;
-  --font-family-montserrat: var(--font-montserrat), var(--font-dm-sans), sans-serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif), ui-serif, Georgia, serif;
+  
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
 }
 
-:root {
-  --background: #212224;
-  --first-color: #fcfaf4;
-  --second-color: #f5a623ff;
-  --third-color: #c7c8c8;
-  --fourth-color: #111111;
-  --tile-color: #343639;
-  --tile-hover-color: #444647;
+@layer base {
+  :root {
+    --paper: #f8f7f3;
+    --ink: #1a1a1a;
+    --accent: #2d4a3e; /* Deep Forest Green */
+    --accent-foreground: #f8f7f3;
+    --muted: #e5e2d9;
+    --muted-foreground: #666666;
+    --border: #dcd9ce;
+  }
+
+  .dark {
+    --paper: #121212;
+    --ink: #f8f7f3;
+    --accent: #dcd9ce;
+    --accent-foreground: #121212;
+    --muted: #2a2a2a;
+    --muted-foreground: #a1a1a1;
+    --border: #333333;
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: none; /* Hide default cursor for custom one */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif), ui-serif, Georgia, serif;
+    letter-spacing: -0.02em;
+  }
 }
 
-body {
-  background-color: var(--background);
-  color: var(--first-color);
-  font-family: var(--font-dm-sans), sans-serif;
+@layer components {
+  /* Tactile Grain Overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.04;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    z-index: 9999;
+  }
+
+  .editorial-container {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .editorial-container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .editorial-container {
+      padding-left: 5rem;
+      padding-right: 5rem;
+    }
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .link-underline {
+    position: relative;
+  }
+
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 0;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  .link-underline:hover::after {
+    width: 100%;
+  }
+
+  /* Blueprint Grid Background */
+  .blueprint-grid {
+    background-image: 
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+/* Custom Cursor Hide for Touch */
+@media (hover: none) {
+  body {
+    cursor: auto;
+  }
+  .custom-cursor {
+    display: none;
+  }
 }

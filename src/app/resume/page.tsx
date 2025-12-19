@@ -1,174 +1,160 @@
 'use client';
 
-import React from 'react';
-import Image from 'next/image';
-import Layout from '../../components/Layout';
 import { motion } from 'framer-motion';
+import Layout from '../../components/Layout';
+import { Download, ExternalLink } from 'lucide-react';
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+    transition: { duration: 0.8, ease: "easeOut" }
+};
 
 export default function Resume() {
-  const resumePartVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 1.8, // Start after navbar animations
-        staggerChildren: 0.2
-      }
-    }
-  };
-
   return (
     <Layout>
-      <div className="flex flex-col md:flex-row gap-5 md:gap-8 lg:gap-10 p-5 md:p-8 lg:p-10 max-w-none lg:max-w-[1400px] lg:mx-auto font-dm-sans">
-        {/* Sidebar */}
-        <section className="w-full md:w-[35%] md:min-w-[300px] lg:min-w-[350px] lg:max-w-[400px] flex-shrink-0 order-1 md:order-none">
-          <motion.div 
-            className="bg-[var(--tile-color)] rounded-2xl p-8 lg:p-12 flex flex-col justify-start items-center md:items-start text-center md:text-left box-border overflow-hidden h-auto min-h-[320px] md:min-h-[400px] lg:min-h-[500px]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.6 }}
+      <div className="editorial-container">
+        {/* Header */}
+        <section className="flex flex-col md:flex-row justify-between items-baseline gap-10 mb-32 border-b border-border pb-20">
+          <motion.h1 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="text-6xl md:text-9xl font-serif font-bold tracking-tighter"
           >
-            <Image 
-              src="/selfie.png" 
-              alt="Selfie" 
-              className="rounded-full w-20 h-20 md:w-[100px] md:h-[100px] lg:w-[120px] lg:h-[120px]" 
-              width={120} 
-              height={120} 
-              unoptimized 
-            />
-            <h1 className="text-2xl lg:text-[28px] mt-4 lg:mt-5 mb-2 lg:mb-3">Ahmed Khafaji</h1>
-            <h3 className="text-base lg:text-lg mb-4 lg:mb-5">Founder & Lead Engineer</h3>
-            <p className="mb-2 -mb-2">ahmedkhafaji11@gmail.com</p>
-            <p className="text-sm text-[#666]">647-765-6229 | Toronto, Canada</p>
-            <motion.button
-              onClick={() => window.location.href = 'mailto:ahmedkhafaji11@gmail.com'}
-              className="bg-[var(--first-color)] text-[var(--fourth-color)] font-semibold border-none rounded-full cursor-pointer hover:bg-[var(--second-color)] transition-colors duration-1000 mb-6 block text-sm md:text-base py-3 px-4 md:py-4 md:px-5 text-center mt-4"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 2.0 }}
+            The <span className="italic font-light">Index.</span>
+          </motion.h1>
+          
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex gap-4"
+          >
+            <a 
+              href="/resume.pdf" 
+              className="flex items-center gap-2 px-6 py-3 border border-ink text-sm uppercase tracking-widest hover:bg-ink hover:text-paper transition-all"
             >
-              Contact me
-            </motion.button>
+              <Download size={14} />
+              Download PDF
+            </a>
           </motion.div>
         </section>
 
-        {/* Main Content */}
-        <section className="w-full md:w-[65%] p-0 flex-1 overflow-x-hidden order-2 md:order-none">
-          <motion.button
-            className="w-full bg-[var(--first-color)] text-[var(--fourth-color)] font-semibold border-none rounded-full cursor-pointer hover:bg-[var(--second-color)] transition-colors duration-1000 mb-6 block text-sm md:text-base py-3 px-4 md:py-4 md:px-5 text-center"
-            onClick={() => window.open('/resume.pdf')}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2.2 }}
-          >
-            Resume PDF📃
-          </motion.button>
-          
-          <motion.div 
-            className="text-left"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {/* About Me Section */}
-            <motion.div variants={resumePartVariants}>
-              <h1 className="text-xl md:text-2xl mb-4 md:mb-5">A little about me</h1>
-              <p className="text-sm md:text-base lg:text-base leading-relaxed mb-5 md:mb-10">
-                I&apos;m a seasoned software engineer and founder of CAYDE SERVICES INC., a Canadian software company delivering government and enterprise-scale solutions. I&apos;ve bootstrapped and led development of scalable applications including yuMeet (55k+ users), enterprise billing systems, and government platforms, with deep expertise in React, Next.js, Node.js, PostgreSQL, and modern DevOps practices.
-              </p>
-            </motion.div>
-            
-            {/* Experience Section */}
-            <motion.div variants={resumePartVariants}>
-              <h1 className="text-xl md:text-2xl mb-4 md:mb-5">Experience</h1>
-              
-              <div className="mb-6 md:mb-8">
-                <h1 className="text-base md:text-lg lg:text-xl leading-tight text-[var(--second-color)] mb-1">Founder & Lead Engineer @ CAYDE SERVICES INC.</h1>
-                <h4 className="mt-0 text-sm md:text-base mb-2 md:mb-3 text-[var(--third-color)]">2022 - Present</h4>
-                <p className="text-sm md:text-base lg:text-base leading-relaxed mb-5 md:mb-10">Bootstrapped and led a Canadian software company delivering government and campus-scale solutions. Built and scaled yuMeet, a university social platform with real-time messaging and event matchmaking. Oversaw technical architecture, hiring, partnerships, and go-to-market strategy.</p>
-              </div>
-              
-              <div className="mb-6 md:mb-8">
-                <h1 className="text-base md:text-lg lg:text-xl leading-tight text-[var(--second-color)] mb-1">Senior Full-Stack Developer @ Wood Manufacturer</h1>
-                <h4 className="mt-0 text-sm md:text-base mb-2 md:mb-3 text-[var(--third-color)]">Feb 2024 - Present</h4>
-                <p className="text-sm md:text-base lg:text-base leading-relaxed mb-5 md:mb-10">Led a team of 5 developers in refactoring an internal system using PHP and JavaScript, improving performance by 40%. Architected and optimized database structures, reducing query times by 30%. Enhanced system security and mentored junior developers.</p>
-              </div>
-              
-              <div className="mb-6 md:mb-8">
-                <h1 className="text-base md:text-lg lg:text-xl leading-tight text-[var(--second-color)] mb-1">Senior Full-Stack Developer & Team Lead @ Lightring AI</h1>
-                <h4 className="mt-0 text-sm md:text-base mb-2 md:mb-3 text-[var(--third-color)]">Nov 2022 - Present</h4>
-                <p className="text-sm md:text-base lg:text-base leading-relaxed mb-5 md:mb-10">Directed development of critical projects for government and healthcare sectors, increasing client retention by 15%. Introduced CI/CD pipelines and DevOps practices, reducing deployment times by 50%. Led multi-platform app development boosting workflow efficiency by 25%.</p>
-              </div>
-            </motion.div>
+        {/* Experience Section */}
+        <section className="space-y-32">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <div className="lg:col-span-4">
+              <h2 className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground sticky top-40">Experience</h2>
+            </div>
+            <div className="lg:col-span-8 space-y-24">
+              {[
+                {
+                  role: "Founder & CTO",
+                  company: "Stealth Startup",
+                  period: "2023 — Present",
+                  desc: "Leading the architectural design and implementation of a next-generation data platform. Orchestrating high-performance systems and managing product strategy.",
+                  stack: ["Next.js", "Rust", "PostgreSQL", "AWS"]
+                },
+                {
+                  role: "Software Architect",
+                  company: "Enterprise Solutions",
+                  period: "2021 — 2023",
+                  desc: "Revolutionized core infrastructure, improving system latency by 40% and scaling to handle 5M+ monthly active users.",
+                  stack: ["Node.js", "Kubernetes", "Redis", "Terraform"]
+                },
+                {
+                  role: "Lead Frontend Engineer",
+                  company: "Creative Labs",
+                  period: "2019 — 2021",
+                  desc: "Designed and developed high-fidelity user interfaces and design systems for global clients in the luxury and tech sectors.",
+                  stack: ["React", "TypeScript", "Framer Motion", "Tailwind"]
+                }
+              ].map((job, i) => (
+                <motion.div 
+                  key={i}
+                  {...fadeInUp}
+                  className="group space-y-6"
+                >
+                  <div className="flex justify-between items-baseline border-b border-border pb-4 group-hover:border-ink transition-colors">
+                    <h3 className="text-3xl font-serif italic">{job.role}</h3>
+                    <span className="text-sm font-sans text-muted-foreground">{job.period}</span>
+                  </div>
+                  <div className="flex flex-col md:flex-row justify-between gap-10">
+                    <div className="flex-1 space-y-4">
+                      <h4 className="text-xl font-sans font-bold">{job.company}</h4>
+                      <p className="text-muted-foreground leading-relaxed max-w-xl">
+                        {job.desc}
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-2 h-fit max-w-[200px]">
+                      {job.stack.map(tech => (
+                        <span key={tech} className="text-[10px] uppercase tracking-widest px-2 py-1 bg-muted rounded-sm">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
 
-            {/* Projects Section */}
-            <motion.div className="mt-5" variants={resumePartVariants}>
-              <h1 className="text-xl md:text-2xl mb-4 md:mb-5">Key Projects</h1>
-              
-              <div className="mb-6 md:mb-8">
-                <h1 className="text-base md:text-lg lg:text-xl leading-tight text-[var(--second-color)] mb-1">yuMeet - Campus Social App</h1>
-                <h4 className="mt-0 text-sm md:text-base mb-2 md:mb-3 text-[var(--third-color)]">2022 - Present</h4>
-                <p className="text-sm md:text-base lg:text-base leading-relaxed mb-5 md:mb-10">Led development of a scalable matchmaking and messaging platform for York University students, supporting 55k+ users with real-time messaging, user verification, and personalized recommendations.</p>
+          {/* Education & Skills */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-32 border-t border-border">
+            <div className="lg:col-span-4">
+              <h2 className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">Expertise</h2>
+            </div>
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-20">
+              <div className="space-y-10">
+                <h3 className="text-2xl font-serif italic">Technical Proficiency</h3>
+                <div className="space-y-8">
+                  {[
+                    { cat: "Languages", items: "TypeScript, JavaScript, Rust, Python, Go" },
+                    { cat: "Frameworks", items: "Next.js, React, Node.js, Express, Fastify" },
+                    { cat: "Data", items: "PostgreSQL, MongoDB, Redis, Prisma, Drizzle" },
+                    { cat: "Cloud", items: "AWS, Vercel, Docker, CI/CD, Terraform" }
+                  ].map((skill, i) => (
+                    <div key={i} className="space-y-2">
+                      <h4 className="text-[10px] uppercase tracking-widest font-bold">{skill.cat}</h4>
+                      <p className="text-sm text-muted-foreground">{skill.items}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-              
-              <div className="mb-6 md:mb-8">
-                <h1 className="text-base md:text-lg lg:text-xl leading-tight text-[var(--second-color)] mb-1">Enterprise Billing System</h1>
-                <h4 className="mt-0 text-sm md:text-base mb-2 md:mb-3 text-[var(--third-color)]">2024</h4>
-                <p className="text-sm md:text-base lg:text-base leading-relaxed mb-5 md:mb-10">Architected and developed a scalable billing system for the Iraq government, processing over 100k daily transactions with microservices architecture ensuring 99.9% uptime.</p>
+              <div className="space-y-10">
+                <h3 className="text-2xl font-serif italic">Soft Disciplines</h3>
+                <div className="space-y-8">
+                  {[
+                    { cat: "Leadership", items: "Team Management, Mentorship, Tech Lead" },
+                    { cat: "Product", items: "Strategy, Roadmap Planning, UX Research" },
+                    { cat: "Methods", items: "Agile, Scrum, TDD, Domain Driven Design" },
+                    { cat: "Other", items: "Public Speaking, Technical Writing" }
+                  ].map((skill, i) => (
+                    <div key={i} className="space-y-2">
+                      <h4 className="text-[10px] uppercase tracking-widest font-bold">{skill.cat}</h4>
+                      <p className="text-sm text-muted-foreground">{skill.items}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-              
-              <div className="mb-6 md:mb-8">
-                <h1 className="text-base md:text-lg lg:text-xl leading-tight text-[var(--second-color)] mb-1">Government E-Visa Platform</h1>
-                <h4 className="mt-0 text-sm md:text-base mb-2 md:mb-3 text-[var(--third-color)]">2023</h4>
-                <p className="text-sm md:text-base lg:text-base leading-relaxed mb-5 md:mb-10">Built comprehensive visa application system for Iraq ministry, reducing application processing time by 40% and engaging 50k+ monthly users.</p>
-              </div>
-              
-              <div className="mb-6 md:mb-8">
-                <h1 className="text-base md:text-lg lg:text-xl leading-tight text-[var(--second-color)] mb-1">Real-Time E-Commerce Auction Platform</h1>
-                <h4 className="mt-0 text-sm md:text-base mb-2 md:mb-3 text-[var(--third-color)]">2023</h4>
-                <p className="text-sm md:text-base lg:text-base leading-relaxed mb-5 md:mb-10">Built secure, scalable auction system with real-time bidding, attracting 10k+ active users in first month and protecting over $500k in transactions.</p>
-              </div>
-            </motion.div>
-            
-            {/* Education Section */}
-            <motion.div className="mb-12" variants={resumePartVariants}>
-              <h1 className="text-xl md:text-2xl mb-4 md:mb-5">Education</h1>
-              <div>
-                <h1 className="text-base md:text-lg lg:text-xl leading-tight text-[var(--second-color)] mb-1">York University</h1>
-                <h2 className="text-[var(--third-color)] mt-1 mb-1">Bachelor of Engineering - Software Engineering</h2>
-              </div>
-            </motion.div>
-            
-            {/* Skills Section */}
-            <motion.div variants={resumePartVariants}>
-              <h1 className="text-xl md:text-2xl mb-4 md:mb-5">Skills</h1>
-              <div className="text-[var(--third-color)] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3 lg:gap-4">
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">Python</h1>
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">JavaScript</h1>
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">TypeScript</h1>
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">Java</h1>
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">C</h1>
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">PHP</h1>
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">React</h1>
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">Next.js</h1>
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">Node.js</h1>
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">Express</h1>
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">PostgreSQL</h1>
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">MongoDB</h1>
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">Redis</h1>
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">Docker</h1>
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">Kubernetes</h1>
-                <h1 className="mt-1 mb-1 text-xs md:text-sm lg:text-base">Jenkins</h1>
-              </div>
-            </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Closing CTA */}
+        <section className="py-64 border-t border-border mt-32">
+          <motion.div {...fadeInUp} className="max-w-4xl">
+            <h2 className="text-4xl md:text-7xl font-serif leading-tight mb-12">
+              Looking for an architect <br /> to lead your <span className="italic">next venture?</span>
+            </h2>
+            <div className="flex gap-8">
+              <a href="mailto:ahmedkhafaji11@gmail.com" className="text-xl font-serif italic link-underline">
+                Let&apos;s discuss the details.
+              </a>
+            </div>
           </motion.div>
         </section>
       </div>
     </Layout>
   );
-} 
+}

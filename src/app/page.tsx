@@ -1,226 +1,266 @@
 'use client';
 
-import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Code, Layout as LayoutIcon, Cpu, Layers } from 'lucide-react';
 import Layout from '../components/Layout';
-import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import { useState } from 'react';
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.8, ease: "easeOut" }
+};
+
+const processSteps = [
+  {
+    title: "Archetype",
+    icon: <LayoutIcon className="w-6 h-6" />,
+    desc: "Defining the core visual and structural identity through conceptual wireframing and design-led strategy."
+  },
+  {
+    title: "Blueprint",
+    icon: <Layers className="w-6 h-6" />,
+    desc: "Architecting the technical stack with precision—choosing the right tools for scalability and longevity."
+  },
+  {
+    title: "Fabrication",
+    icon: <Code className="w-6 h-6" />,
+    desc: "Crafting clean, type-safe, and high-performance code that brings the architectural vision to life."
+  },
+  {
+    title: "Integration",
+    icon: <Cpu className="w-6 h-6" />,
+    desc: "Deployment and optimization, ensuring seamless performance across all digital environments."
+  }
+];
 
 export default function Home() {
-  const handleTileClick = (url: string) => {
-    if (url.startsWith('http')) {
-      window.open(url, '_blank');
-    } else {
-      window.location.href = url;
-    }
-  };
-
-  const tileVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 1.6, // Start after navbar animations
-        staggerChildren: 0.3
-      }
-    }
-  };
+  const [hoveredWork, setHoveredWork] = useState<number | null>(null);
 
   return (
     <Layout>
-      <section>
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2.5 font-dm-sans"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* About Tile - spans 2 columns on medium+, full width on mobile */}
-          <motion.div 
-            className="bg-[var(--tile-color)] hover:bg-[var(--tile-hover-color)] rounded-2xl p-12 relative flex flex-col justify-start items-start h-80 max-md:h-[280px] box-border overflow-hidden text-left cursor-pointer transition-colors md:col-span-2" 
-            onClick={() => handleTileClick('/about')}
-            variants={tileVariants}
-            transition={{ duration: 0.8 }}
-          >
-            <Image 
-              className="rounded-full w-full min-w-[60px] max-w-[100px] h-auto aspect-square object-cover mb-4" 
-              src="/selfie.png" 
-              alt="Selfie" 
-              width={60} 
-              height={60}
-            />
-            <h1 className="text-2xl lg:text-3xl font-semibold text-[var(--first-color)] leading-tight mb-2">
-              Hey, I&apos;m Ahmed 👋🏻
-            </h1>
-            <p className="text-sm lg:text-base text-[var(--third-color)] opacity-80">
-              Software Engineer & Founder
-            </p>
-            <svg
-              className="stroke-[var(--third-color)] absolute bottom-[10%] right-[10%] translate-x-1/2 translate-y-1/2 w-6 h-6"
-              xmlns="http://www.w3.org/2000/svg"
-              width="60"
-              height="60"
-              fill="none"
-            >
-              <path
-                stroke="#c7c8c8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="3"
-                d="M4.167 10h11.667M10.833 15l5-5M10.833 5l5 5"
-              />
-            </svg>
-          </motion.div>
-
-          {/* Resume Tile */}
-          <motion.div 
-            className="bg-[var(--tile-color)] hover:bg-[var(--tile-hover-color)] rounded-2xl p-12 relative flex flex-col justify-start items-start h-80 max-md:h-[280px] box-border overflow-hidden text-left cursor-pointer transition-colors" 
-            onClick={() => handleTileClick('/resume')}
-            variants={tileVariants}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="mb-6">
-              <svg
-                className="stroke-[var(--second-color)] w-12 h-12"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+      <div className="editorial-container space-y-40 md:space-y-64">
+        {/* Editorial Hero */}
+        <section className="relative pt-10 md:pt-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            <div className="lg:col-span-8">
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="inline-block text-[10px] uppercase tracking-[0.5em] text-muted-foreground mb-6"
               >
-                <path
-                  d="M5 21C5 17.134 8.13401 14 12 14C15.866 14 19 17.134 19 21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
-                  stroke="#f5a623"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-            <h1 className="text-xl lg:text-2xl font-semibold text-[var(--first-color)] leading-tight mb-2">
-              See my resume
-            </h1>
-            <p className="text-sm lg:text-base text-[var(--third-color)] opacity-80">
-              Professional experience & skills
-            </p>
-            <svg
-              className="stroke-[var(--third-color)] absolute bottom-[10%] right-[10%] translate-x-1/2 translate-y-1/2 w-6 h-6"
-              xmlns="http://www.w3.org/2000/svg"
-              width="60px"
-              height="60px"
-              fill="none"
-            >
-              <path
-                stroke="#c7c8c8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="3"
-                d="M4.167 10h11.667M10.833 15l5-5M10.833 5l5 5"
-              />
-            </svg>
-          </motion.div>
-
-          {/* GitHub Tile */}
-          <motion.div
-            className="bg-[var(--tile-color)] hover:bg-[var(--tile-hover-color)] rounded-2xl p-12 relative flex flex-col justify-start items-start h-80 max-md:h-[280px] box-border overflow-hidden text-left cursor-pointer transition-colors"
-            onClick={() => handleTileClick('https://github.com/khafaji-ahmed')}
-            variants={tileVariants}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="mb-6">
-              <svg
-                className="stroke-[var(--second-color)] fill-[var(--second-color)] w-12 h-12"
-                viewBox="0 0 100 100"
-                color='#f5a623ff'
-                preserveAspectRatio="xMidYMid meet"
-                xmlns="http://www.w3.org/2000/svg"
+                Based in California — Software Architect
+              </motion.span>
+              <motion.h1 
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                className="text-6xl md:text-[10rem] font-serif font-bold leading-[0.85] tracking-tighter mb-12 text-balance"
               >
-                <path
-                  fill="#f5a623ff"
-                  d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
-                />
-              </svg>
+                Crafting <br />
+                Digital <br />
+                <span className="italic font-light text-accent">Artifacts.</span>
+              </motion.h1>
             </div>
-            <h1 className="text-xl lg:text-2xl font-semibold text-[var(--first-color)] leading-tight mb-2">
-              Look at my GitHub
-            </h1>
-            <p className="text-sm lg:text-base text-[var(--third-color)] opacity-80">
-              Open source contributions & projects
-            </p>
-            <svg
-              className="stroke-[var(--third-color)] absolute bottom-[10%] right-[10%] translate-x-1/2 translate-y-1/2 w-6 h-6"
-              xmlns="http://www.w3.org/2000/svg"
-              width="60px"
-              height="60px"
-              fill="none"
-            >
-              <path
-                stroke="#c7c8c8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="3"
-                d="M4.167 10h11.667M10.833 15l5-5M10.833 5l5 5"
-              />
-            </svg>
-          </motion.div>
+            
+            <div className="lg:col-span-4 lg:pt-24">
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 1 }}
+                className="text-xl text-muted-foreground leading-relaxed font-sans mb-10"
+              >
+                Ahmed Khafaji combines architectural precision with entrepreneurial vision to build high-performance systems that define the next generation of web experience.
+              </motion.p>
+              
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.7 }}
+                className="flex flex-col gap-4 items-start"
+              >
+                <Button variant="link" className="p-0 h-auto text-lg font-serif italic link-underline group" asChild>
+                  <a href="mailto:ahmedkhafaji11@gmail.com">
+                    Get in touch 
+                    <ArrowRight className="inline-block ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </a>
+                </Button>
+              </motion.div>
+            </div>
+          </div>
+        </section>
 
-          {/* Projects Tile */}
+        {/* The Portrait / Statement */}
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
           <motion.div 
-            className="bg-[var(--tile-color)] hover:bg-[var(--tile-hover-color)] rounded-2xl p-12 relative flex flex-col justify-start items-start h-80 max-md:h-[280px] box-border overflow-hidden text-left cursor-pointer transition-colors"
-            variants={tileVariants}
-            transition={{ duration: 0.8 }}
+            {...fadeInUp}
+            className="lg:col-span-5 order-2 lg:order-1"
           >
-            <h1 className="text-xl lg:text-2xl font-semibold text-[var(--first-color)] leading-tight mb-4">
-              Projects
-            </h1>
-            <p className="text-sm lg:text-base text-[var(--third-color)] leading-relaxed opacity-90">
-              I&apos;ve built professional projects as a lead developer. For personal projects and code samples, check out my resume!
-            </p>
-          </motion.div>
-
-          {/* Languages Tile - spans 3 columns on large, 2 on medium, full width on mobile */}
-          <motion.div 
-            className="bg-[var(--tile-color)] hover:bg-[var(--tile-hover-color)] rounded-2xl p-12 relative flex flex-col justify-start items-start h-80 max-md:h-[280px] box-border text-left cursor-pointer transition-colors lg:col-span-3 md:col-span-2 overflow-hidden"
-            variants={tileVariants}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="relative w-full h-full flex flex-col">
-              <Image
-                className="w-full h-auto object-contain absolute top-0 left-0 -translate-y-[25%] opacity-90"
-                src="/languages.png"
-                alt="Programming Languages"
-                width={300}
-                height={200}
-                unoptimized
+            <div className="relative aspect-[3/4] bg-muted overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 rounded-sm">
+              <Image 
+                src="/selfie.png" 
+                alt="Ahmed Khafaji" 
+                fill 
+                className="object-cover scale-110 hover:scale-100 transition-transform duration-1000"
               />
-              <div className="absolute bottom-0 left-0 z-10">
-                <h1 className="text-xl lg:text-2xl font-semibold text-[var(--first-color)] leading-tight mb-2">
-                  Languages & Technologies
-                </h1>
-                <p className="text-sm lg:text-base text-[var(--third-color)] opacity-80">
-                  Full-stack development expertise
-                </p>
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            {...fadeInUp}
+            className="lg:col-span-7 order-1 lg:order-2 space-y-12"
+          >
+            <h2 className="text-4xl md:text-7xl font-serif leading-tight">
+              A philosophy of <span className="italic">intent.</span>
+            </h2>
+            <div className="max-w-xl space-y-6 text-lg text-muted-foreground leading-relaxed">
+              <p>
+                In an era of mass-produced code, I prioritize the artisanal. Every line is an architectural choice, every interaction a moment of brand expression.
+              </p>
+              <p>
+                From founding startups to leading engineering teams, my focus remains constant: building scalable, type-safe, and visually arresting software that scales with your ambition.
+              </p>
+              <div className="pt-10 grid grid-cols-2 gap-10">
+                <div>
+                  <h4 className="text-[10px] uppercase tracking-widest font-sans mb-4 border-b border-border pb-2">Core Stack</h4>
+                  <ul className="text-sm space-y-2 text-ink">
+                    <li>Next.js / React</li>
+                    <li>TypeScript / Node</li>
+                    <li>PostgreSQL / Redis</li>
+                    <li>AWS / Vercel</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-[10px] uppercase tracking-widest font-sans mb-4 border-b border-border pb-2">Disciplines</h4>
+                  <ul className="text-sm space-y-2 text-ink">
+                    <li>System Architecture</li>
+                    <li>Product Strategy</li>
+                    <li>UI/UX Engineering</li>
+                    <li>Cloud Infrastructure</li>
+                  </ul>
+                </div>
               </div>
-              <svg
-                className="stroke-[var(--third-color)] absolute bottom-[10%] right-[10%] translate-x-1/2 translate-y-1/2 w-6 h-6 z-10"
-                xmlns="http://www.w3.org/2000/svg"
-                width="60px"
-                height="60px"
-                fill="none"
-              >
-                <path
-                  stroke="#c7c8c8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
-                  d="M4.167 10h11.667M10.833 15l5-5M10.833 5l5 5"
-                />
-              </svg>
             </div>
           </motion.div>
-        </motion.div>
-      </section>
+        </section>
+
+        {/* Process Section - NEW */}
+        <section className="relative py-20">
+          <div className="absolute inset-0 blueprint-grid opacity-30 -z-10" />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-20">
+            <div className="lg:col-span-6">
+              <h2 className="text-5xl font-serif italic mb-6">The Methodology</h2>
+              <p className="text-muted-foreground text-lg max-w-md">
+                A rigorous, four-stage approach to digital construction. From the first sketch to the final deployment.
+              </p>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+            {processSteps.map((step, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-paper p-10 space-y-6 group hover:bg-accent hover:text-paper transition-colors duration-500"
+              >
+                <div className="text-accent group-hover:text-paper transition-colors">
+                  {step.icon}
+                </div>
+                <h3 className="text-2xl font-serif italic">{step.title}</h3>
+                <p className="text-sm leading-relaxed opacity-80">
+                  {step.desc}
+                </p>
+                <div className="pt-4 text-[10px] uppercase tracking-widest opacity-40">
+                  Phase 0{i + 1}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Work / Index Preview */}
+        <section>
+          <div className="flex justify-between items-baseline mb-20 border-b border-border pb-10">
+            <h2 className="text-5xl font-serif italic">Selected Works</h2>
+            <a href="/resume" className="text-xs uppercase tracking-[0.3em] link-underline">View Full Index</a>
+          </div>
+          
+          <div className="space-y-12">
+            {[
+              {
+                title: "Venture Architecture",
+                category: "Product / Strategy",
+                year: "2024",
+                desc: "Scaling digital products from zero to market leader with a focus on core infrastructure and performance.",
+                tech: "Next.js, Tailwind, Supabase, Vercel"
+              },
+              {
+                title: "High-Performance Systems",
+                category: "Engineering / Backend",
+                year: "2023",
+                desc: "Designing low-latency data pipelines and distributed systems that handle millions of requests with precision.",
+                tech: "Node.js, Redis, PostgreSQL, AWS"
+              }
+            ].map((work, i) => (
+              <motion.div 
+                key={i}
+                {...fadeInUp}
+                onMouseEnter={() => setHoveredWork(i)}
+                onMouseLeave={() => setHoveredWork(null)}
+                className="group cursor-pointer relative grid grid-cols-1 lg:grid-cols-12 gap-10 py-16 border-b border-border/50 hover:border-ink transition-all duration-500"
+              >
+                <div className="lg:col-span-1 text-[10px] uppercase tracking-widest text-muted-foreground pt-2">
+                  0{i + 1}
+                </div>
+                <div className="lg:col-span-5">
+                  <h3 className="text-4xl md:text-7xl font-serif group-hover:italic transition-all duration-500 leading-none">{work.title}</h3>
+                  
+                  {/* Blueprint Reveal on Hover */}
+                  <AnimatePresence>
+                    {hoveredWork === i && (
+                      <motion.div 
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="pt-6 text-accent font-mono text-xs uppercase tracking-widest">
+                          [ {work.tech} ]
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+                <div className="lg:col-span-4 text-muted-foreground text-lg leading-relaxed pt-2">
+                  {work.desc}
+                </div>
+                <div className="lg:col-span-2 text-right text-[10px] uppercase tracking-widest pt-2">
+                  <span className="block mb-1 font-bold">{work.category}</span>
+                  <span className="text-muted-foreground/50">{work.year}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Closing */}
+        <section className="py-40 text-center">
+          <motion.div {...fadeInUp}>
+            <h2 className="text-5xl md:text-[12rem] font-serif font-bold tracking-tighter leading-[0.8] mb-20">
+              Let&apos;s Build <br /> <span className="italic font-light text-accent">Something.</span>
+            </h2>
+            <Button size="lg" className="rounded-none bg-ink text-paper hover:bg-accent transition-colors px-12 h-16 text-lg font-sans uppercase tracking-[0.2em]" asChild>
+              <a href="mailto:ahmedkhafaji11@gmail.com">Initialize</a>
+            </Button>
+          </motion.div>
+        </section>
+      </div>
     </Layout>
   );
 }

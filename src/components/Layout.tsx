@@ -1,143 +1,105 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
+import { cn } from '@/lib/utils';
+import CustomCursor from './CustomCursor';
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
+const navLinks = [
+  { name: 'Index', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Resume', href: '/resume' },
+];
 
-export default function Layout({ children }: LayoutProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+export default function Layout({ children }: { children: React.ReactNode }) {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    
-    // Get nav and navlinks elements
-    const nav = document.querySelector('.mobile-nav');
-    const navlinks = document.querySelectorAll('.mobile-navlink');
-    
-    if (!isMenuOpen) {
-      // Opening menu
-      navlinks.forEach((link) => {
-        (link as HTMLElement).style.display = 'block';
-      });
-      
-      // Create GET IN TOUCH button for mobile menu
-      const getInTouchButton = document.createElement('button');
-      getInTouchButton.className = 'bg-[var(--first-color)] text-[var(--fourth-color)] font-semibold border-none py-4 px-6 rounded-full cursor-pointer hover:bg-[var(--second-color)] transition-colors duration-1000 block my-3 mx-0 text-center mobile-navlink';
-      getInTouchButton.style.fontFamily = 'var(--font-family-montserrat)';
-      getInTouchButton.textContent = 'GET IN TOUCH';
-      getInTouchButton.onclick = function () {
-        window.location.href = 'mailto:ahmedkhafaji11@gmail.com';
-      };
-      nav?.appendChild(getInTouchButton);
-    } else {
-      // Closing menu
-      navlinks.forEach((link) => {
-        (link as HTMLElement).style.display = 'none';
-      });
-      
-      // Remove existing GET IN TOUCH button
-      const existingButton = nav?.querySelector('button');
-      if (existingButton) {
-        existingButton.remove();
-      }
-    }
-  };
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  return (
-    <div className="min-h-screen font-dm-sans">
-      <div className="p-5 px-[8%] mb-24">
-        {/* Header Section */}
-        <section>
-          <div className={`flex justify-between items-center mb-16 ${isMenuOpen ? 'menu-open' : ''}`}>
-            {/* Name */}
-            <motion.h1 
-              className="text-2xl font-semibold text-[var(--first-color)]"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.1 }}
-            >
-              Ahmed
-            </motion.h1>
+    return (
+      <div className="min-h-screen selection:bg-accent/20">
+        <CustomCursor />
+        {/* Navigation */}
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex">
-              <motion.div 
-                className="mx-2"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.4 }}
+      <nav className={cn(
+        "fixed top-0 left-0 w-full z-50 transition-all duration-500 py-8",
+        isScrolled ? "bg-paper/80 backdrop-blur-md py-4 border-b border-border" : "bg-transparent"
+      )}>
+        <div className="editorial-container flex justify-between items-baseline">
+          <Link href="/" className="group">
+            <span className="font-serif text-2xl font-bold tracking-tighter">Ahmed.</span>
+            <span className="block h-[1px] w-0 bg-ink group-hover:w-full transition-all duration-300" />
+          </Link>
+
+          <div className="flex gap-8 items-center">
+            {navLinks.map((link) => (
+              <Link 
+                key={link.name} 
+                href={link.href}
+                className={cn(
+                  "text-sm font-sans uppercase tracking-[0.2em] transition-colors hover:text-accent relative",
+                  pathname === link.href ? "text-ink font-bold" : "text-muted-foreground"
+                )}
               >
-                <Link href="/" className="text-[var(--third-color)] no-underline mx-2 hover:text-[var(--second-color)] transition-colors duration-1000">
-                  Home
-                </Link>
-              </motion.div>
-              <motion.div 
-                className="mx-2"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.7 }}
-              >
-                <Link href="/about" className="text-[var(--third-color)] no-underline mx-2 hover:text-[var(--second-color)] transition-colors duration-1000">
-                  About
-                </Link>
-              </motion.div>
-              <motion.div 
-                className="mx-2"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 1.0 }}
-              >
-                <Link href="/resume" className="text-[var(--third-color)] no-underline mx-2 hover:text-[var(--second-color)] transition-colors duration-1000">
-                  Resume
-                </Link>
-              </motion.div>
+                {link.name}
+                {pathname === link.href && (
+                  <motion.span 
+                    layoutId="nav-underline"
+                    className="absolute -bottom-1 left-0 w-full h-[1px] bg-accent"
+                  />
+                )}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      <main className="pt-32 pb-20">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={pathname}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="noise-bg min-h-screen"
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
+      </main>
+
+      {/* Minimal Footer */}
+      <footer className="py-20 border-t border-border bg-paper">
+        <div className="editorial-container">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+            <div>
+              <h2 className="font-serif text-4xl font-bold mb-4 italic">Let&apos;s talk.</h2>
+              <a href="mailto:ahmedkhafaji11@gmail.com" className="text-xl font-sans link-underline">
+                ahmedkhafaji11@gmail.com
+              </a>
             </div>
-
-            {/* Get in Touch Button (Desktop) */}
-            <motion.button
-              onClick={() => window.location.href = 'mailto:ahmedkhafaji11@gmail.com'}
-              className="hidden md:block bg-[var(--first-color)] text-[var(--fourth-color)] font-semibold border-none py-4 px-6 rounded-full cursor-pointer hover:bg-[var(--second-color)] transition-colors duration-1000"
-              style={{ fontFamily: 'var(--font-family-montserrat)' }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.3 }}
-            >
-              GET IN TOUCH
-            </motion.button>
-
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={toggleMenu}
-              className="md:hidden bg-transparent border-none cursor-pointer p-2 relative z-20"
-              aria-label="Toggle Menu"
-            >
-              <span className={`block w-6 h-[3px] bg-[#fcfaf4] transition-all duration-300 ${isMenuOpen ? 'rotate-[-45deg] translate-x-[-5px] translate-y-[6px]' : ''}`}></span>
-              <span className={`block w-6 h-[3px] bg-[#fcfaf4] transition-all duration-300 mt-1 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-              <span className={`block w-6 h-[3px] bg-[#fcfaf4] transition-all duration-300 mt-1 ${isMenuOpen ? 'rotate-45 translate-x-[-5px] translate-y-[-6px]' : ''}`}></span>
-            </button>
-
-            {/* Mobile Navigation Menu */}
-            <div className={`mobile-nav md:hidden ${isMenuOpen ? 'flex' : 'hidden'} flex-col items-center justify-end w-[30vw] h-auto p-2 absolute top-20 right-20 bg-[var(--tile-color)] z-10 rounded-2xl shadow-[0_0_20px_rgba(0,0,0,0.7)]`}>
-              <div className="mobile-navlink block my-3 mx-0 text-center text-[#fcfaf4] no-underline">
-                <Link href="/" className="text-[#fcfaf4] no-underline">Home</Link>
-              </div>
-              <div className="mobile-navlink block my-3 mx-0 text-center text-[#fcfaf4] no-underline">
-                <Link href="/about" className="text-[#fcfaf4] no-underline">About</Link>
-              </div>
-              <div className="mobile-navlink block my-3 mx-0 text-center text-[#fcfaf4] no-underline">
-                <Link href="/resume" className="text-[#fcfaf4] no-underline">Resume</Link>
-              </div>
+            
+            <div className="flex gap-12 text-sm uppercase tracking-widest text-muted-foreground">
+              <a href="https://github.com/khafaji-ahmed" target="_blank" className="hover:text-ink transition-colors">Github</a>
+              <a href="#" className="hover:text-ink transition-colors">LinkedIn</a>
+              <a href="#" className="hover:text-ink transition-colors">X / Twitter</a>
             </div>
           </div>
-        </section>
-
-        {/* Main Content */}
-        {children}
-      </div>
+          
+          <div className="mt-20 pt-10 border-t border-border flex justify-between text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+            <span>© 2025 Ahmed Khafaji</span>
+            <span>Software Architect</span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
-} 
+}

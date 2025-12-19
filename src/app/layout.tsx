@@ -1,24 +1,22 @@
 import type { Metadata } from "next";
-import { DM_Sans, Montserrat } from "next/font/google";
+import { Fraunces, Syne } from "next/font/google";
 import "./globals.css";
 
-const dmSans = DM_Sans({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-dm-sans",
+  variable: "--font-serif",
   display: "swap",
 });
 
-const montserrat = Montserrat({
+const syne = Syne({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-montserrat",
+  variable: "--font-sans",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Ahmed - Founder",
-  description: "Ahmed Khafaji - Software Engineering Student & Founder",
+  title: "Ahmed | Software Architect & Founder",
+  description: "Ahmed Khafaji - Crafting digital experiences with precision and purpose.",
 };
 
 export default function RootLayout({
@@ -27,16 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${fraunces.variable} ${syne.variable}`}>
       <head>
         <link rel="icon" type="image/png" href="/favicon.png" />
-        <style>{`
-          link[rel="icon"] {
-            border-radius: 50%;
-          }
-        `}</style>
       </head>
-      <body className={`${dmSans.variable} ${montserrat.variable}`}>
+      <body className="bg-paper text-ink selection:bg-accent/30 antialiased overflow-x-hidden">
         {children}
       </body>
     </html>
