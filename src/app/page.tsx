@@ -1,11 +1,10 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowRight, Code, Layout as LayoutIcon, Cpu, Layers } from 'lucide-react';
 import Layout from '../components/Layout';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { useState } from 'react';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -38,10 +37,8 @@ const processSteps = [
 ];
 
 export default function Home() {
-  const [hoveredWork, setHoveredWork] = useState<number | null>(null);
-
   return (
-    <Layout>
+    <Layout hideFooterCTA={true}>
       <div className="editorial-container space-y-40 md:space-y-64">
         {/* Editorial Hero */}
         <section className="relative pt-10 md:pt-20">
@@ -52,7 +49,7 @@ export default function Home() {
                 animate={{ opacity: 1 }}
                 className="inline-block text-[10px] uppercase tracking-[0.5em] text-muted-foreground mb-6"
               >
-                Based in California — Software Architect
+                Based in Toronto — Software Engineer
               </motion.span>
               <motion.h1 
                 initial={{ opacity: 0, y: 40 }}
@@ -76,19 +73,19 @@ export default function Home() {
                 Ahmed Khafaji combines architectural precision with entrepreneurial vision to build high-performance systems that define the next generation of web experience.
               </motion.p>
               
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.7 }}
-                className="flex flex-col gap-4 items-start"
-              >
-                <Button variant="link" className="p-0 h-auto text-lg font-serif italic link-underline group" asChild>
-                  <a href="mailto:ahmedkhafaji11@gmail.com">
-                    Get in touch 
-                    <ArrowRight className="inline-block ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </a>
-                </Button>
-              </motion.div>
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.7 }}
+                  className="flex flex-col gap-4 items-start"
+                >
+                  <Button variant="link" className="p-0 h-auto text-lg font-serif italic link-underline group" asChild>
+                    <a href="mailto:cayde@cayde.ca">
+                      Get in touch 
+                      <ArrowRight className="inline-block ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </a>
+                  </Button>
+                </motion.div>
             </div>
           </div>
         </section>
@@ -198,12 +195,12 @@ export default function Home() {
                 category: "Product / Strategy",
                 year: "2024",
                 desc: "Scaling digital products from zero to market leader with a focus on core infrastructure and performance.",
-                tech: "Next.js, Tailwind, Supabase, Vercel"
+                tech: ""
               },
               {
                 title: "High-Performance Systems",
-                category: "Engineering / Backend",
-                year: "2023",
+                category: "Engineering",
+                year: "2025",
                 desc: "Designing low-latency data pipelines and distributed systems that handle millions of requests with precision.",
                 tech: "Node.js, Redis, PostgreSQL, AWS"
               }
@@ -211,37 +208,26 @@ export default function Home() {
               <motion.div 
                 key={i}
                 {...fadeInUp}
-                onMouseEnter={() => setHoveredWork(i)}
-                onMouseLeave={() => setHoveredWork(null)}
                 className="group cursor-pointer relative grid grid-cols-1 lg:grid-cols-12 gap-10 py-16 border-b border-border/50 hover:border-ink transition-all duration-500"
               >
                 <div className="lg:col-span-1 text-[10px] uppercase tracking-widest text-muted-foreground pt-2">
                   0{i + 1}
                 </div>
-                <div className="lg:col-span-5">
-                  <h3 className="text-4xl md:text-7xl font-serif group-hover:italic transition-all duration-500 leading-none">{work.title}</h3>
+                <div className="lg:col-span-8">
+                  <h3 className="text-4xl md:text-7xl font-serif group-hover:italic transition-all duration-500 leading-none mb-6">{work.title}</h3>
                   
-                  {/* Blueprint Reveal on Hover */}
-                  <AnimatePresence>
-                    {hoveredWork === i && (
-                      <motion.div 
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="overflow-hidden"
-                      >
-                        <p className="pt-6 text-accent font-mono text-xs uppercase tracking-widest">
-                          [ {work.tech} ]
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {work.tech && (
+                    <p className="text-accent font-mono text-[10px] uppercase tracking-[0.3em] mb-6">
+                      [ {work.tech} ]
+                    </p>
+                  )}
+                  
+                  <p className="max-w-xl text-muted-foreground text-lg leading-relaxed">
+                    {work.desc}
+                  </p>
                 </div>
-                <div className="lg:col-span-4 text-muted-foreground text-lg leading-relaxed pt-2">
-                  {work.desc}
-                </div>
-                <div className="lg:col-span-2 text-right text-[10px] uppercase tracking-widest pt-2">
-                  <span className="block mb-1 font-bold">{work.category}</span>
+                <div className="lg:col-span-3 lg:col-start-10 text-right text-[10px] uppercase tracking-widest pt-2">
+                  <span className="block mb-2 font-bold text-ink">{work.category}</span>
                   <span className="text-muted-foreground/50">{work.year}</span>
                 </div>
               </motion.div>
@@ -250,15 +236,15 @@ export default function Home() {
         </section>
 
         {/* Closing */}
-        <section className="py-40 text-center">
-          <motion.div {...fadeInUp}>
-            <h2 className="text-5xl md:text-[12rem] font-serif font-bold tracking-tighter leading-[0.8] mb-20">
-              Let&apos;s Build <br /> <span className="italic font-light text-accent">Something.</span>
-            </h2>
-            <Button size="lg" className="rounded-none bg-ink text-paper hover:bg-accent transition-colors px-12 h-16 text-lg font-sans uppercase tracking-[0.2em]" asChild>
-              <a href="mailto:ahmedkhafaji11@gmail.com">Initialize</a>
-            </Button>
-          </motion.div>
+        <section className="pt-40 pb-20 border-t border-border">
+            <motion.div {...fadeInUp} className="max-w-4xl">
+              <h2 className="text-5xl md:text-[10rem] font-serif font-bold tracking-tighter leading-[0.8] mb-16">
+                Let&apos;s Build <br /> <span className="italic font-light text-accent">Something.</span>
+              </h2>
+              <Button size="lg" className="rounded-none bg-ink text-paper hover:bg-accent transition-colors px-12 h-16 text-lg font-sans uppercase tracking-[0.2em]" asChild>
+                <a href="mailto:cayde@cayde.ca">Initialize</a>
+              </Button>
+            </motion.div>
         </section>
       </div>
     </Layout>

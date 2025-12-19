@@ -13,11 +13,12 @@ const navLinks = [
   { name: 'Resume', href: '/resume' },
 ];
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children, hideFooterCTA = false }: { children: React.ReactNode, hideFooterCTA?: boolean }) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const pathname = usePathname();
+    const pathname = usePathname();
+    const normalizedPathname = pathname.replace(/\/$/, '') || '/';
 
-  useEffect(() => {
+    useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -43,13 +44,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Link 
                 key={link.name} 
                 href={link.href}
-                className={cn(
-                  "text-sm font-sans uppercase tracking-[0.2em] transition-colors hover:text-accent relative",
-                  pathname === link.href ? "text-ink font-bold" : "text-muted-foreground"
-                )}
-              >
-                {link.name}
-                {pathname === link.href && (
+                  className={cn(
+                    "text-sm font-sans uppercase tracking-[0.2em] transition-colors hover:text-accent relative",
+                    normalizedPathname === link.href ? "text-ink font-bold" : "text-muted-foreground"
+                  )}
+                >
+                  {link.name}
+                  {normalizedPathname === link.href && (
                   <motion.span 
                     layoutId="nav-underline"
                     className="absolute -bottom-1 left-0 w-full h-[1px] bg-accent"
@@ -77,26 +78,29 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </main>
 
       {/* Minimal Footer */}
-      <footer className="py-20 border-t border-border bg-paper">
+      <footer className="pb-20 bg-paper">
         <div className="editorial-container">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
-            <div>
+          {!hideFooterCTA && (
+            <div className="py-20 border-t border-border">
               <h2 className="font-serif text-4xl font-bold mb-4 italic">Let&apos;s talk.</h2>
-              <a href="mailto:ahmedkhafaji11@gmail.com" className="text-xl font-sans link-underline">
-                ahmedkhafaji11@gmail.com
+              <a href="mailto:cayde@cayde.ca" className="text-xl font-sans link-underline">
+                cayde@cayde.ca
               </a>
             </div>
+          )}
+          
+          <div className="pt-10 border-t border-border flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+            <div className="flex gap-8">
+              <span>© 2025 Ahmed Khafaji</span>
+              <span className="hidden md:inline">/</span>
+              <span>Software Architect</span>
+            </div>
             
-            <div className="flex gap-12 text-sm uppercase tracking-widest text-muted-foreground">
+            <div className="flex gap-8">
               <a href="https://github.com/khafaji-ahmed" target="_blank" className="hover:text-ink transition-colors">Github</a>
-              <a href="#" className="hover:text-ink transition-colors">LinkedIn</a>
+              <a href="https://linkedin.com/in/ahmed-khafaji" target="_blank" className="hover:text-ink transition-colors">LinkedIn</a>
               <a href="#" className="hover:text-ink transition-colors">X / Twitter</a>
             </div>
-          </div>
-          
-          <div className="mt-20 pt-10 border-t border-border flex justify-between text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-            <span>© 2025 Ahmed Khafaji</span>
-            <span>Software Architect</span>
           </div>
         </div>
       </footer>

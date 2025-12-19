@@ -8,7 +8,7 @@ const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" as const }
+  transition: { duration: 0.8, ease: "easeOut" as const }
 };
 
 export default function About() {
@@ -32,11 +32,11 @@ export default function About() {
             {...fadeInUp}
             className="lg:col-span-7 space-y-12"
           >
-            <p className="text-3xl md:text-4xl font-serif leading-snug">
+            <p className="text-3xl md:text-5xl font-serif leading-[1.1] tracking-tight">
               Ahmed Khafaji is a software architect and founder focused on the intersection of technical excellence and brand storytelling.
             </p>
             
-            <div className="space-y-6 text-lg text-muted-foreground leading-relaxed max-w-2xl">
+            <div className="space-y-8 text-lg text-muted-foreground leading-relaxed max-w-2xl font-light">
               <p>
                 My journey in technology began with a fascination for systems—how they scale, how they fail, and how they can be refined into something elegant. Today, I translate that fascination into digital products that solve complex problems for high-growth ventures.
               </p>
@@ -48,59 +48,64 @@ export default function About() {
               </p>
             </div>
 
-            <div className="pt-20">
-              <h3 className="text-[10px] uppercase tracking-[0.4em] mb-10 border-b border-border pb-4">Philosophy</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="pt-24 border-t border-border/50">
+              <h3 className="text-[10px] uppercase tracking-[0.5em] mb-12 text-muted-foreground">Philosophy</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
                 {[
                   { title: "Precision", desc: "Every line of code is a design decision. I value clarity over cleverness." },
                   { title: "Velocity", desc: "Shipping is a feature. I build systems that enable rapid iteration without debt." },
                   { title: "Empathy", desc: "Software is for people. If it doesn't solve a human problem, it's just noise." },
                   { title: "Scale", desc: "Architecture must breathe. I design for tomorrow's growth, today." }
                 ].map((item, i) => (
-                  <div key={i} className="space-y-2">
-                    <h4 className="font-serif text-xl italic">{item.title}</h4>
-                    <p className="text-sm text-muted-foreground">{item.desc}</p>
+                  <div key={i} className="group">
+                    <h4 className="font-serif text-2xl mb-3 group-hover:italic transition-all duration-300">{item.title}</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
                   </div>
                 ))}
               </div>
             </div>
           </motion.div>
 
-          {/* Sidebar / Stats */}
+          {/* Sidebar / Visuals */}
           <motion.div 
             {...fadeInUp}
-            className="lg:col-span-5 space-y-20"
+            className="lg:col-span-5 space-y-24"
           >
-            <div className="aspect-square relative bg-muted grayscale">
-              <Image 
-                src="/selfie.png" 
-                alt="Ahmed Portrait" 
-                fill 
-                className="object-cover"
-              />
+            <div className="relative">
+              <div className="aspect-[4/5] relative bg-zinc-100 grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out overflow-hidden border border-border">
+                <Image 
+                  src="/selfie.png" 
+                  alt="Ahmed Portrait" 
+                  fill 
+                  className="object-cover scale-105 hover:scale-100 transition-transform duration-1000"
+                  priority
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 border-r border-b border-zinc-300 -z-10" />
             </div>
 
-            <div className="space-y-10">
-              <h3 className="text-[10px] uppercase tracking-[0.4em] border-b border-border pb-4">In Numbers</h3>
-              <div className="grid grid-cols-2 gap-10">
+            <div className="space-y-12">
+              <h3 className="text-[10px] uppercase tracking-[0.5em] border-b border-border pb-4 text-muted-foreground">In Numbers</h3>
+              <div className="grid grid-cols-1 gap-12">
                 <div>
-                  <span className="block text-4xl font-serif font-bold">08+</span>
-                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Years Experience</span>
+                  <span className="block text-5xl font-serif font-light mb-1">08<span className="text-sm align-top italic">+</span></span>
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">Years Experience</span>
                 </div>
                 <div>
-                  <span className="block text-4xl font-serif font-bold">15+</span>
-                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Ventures Launched</span>
+                  <span className="block text-5xl font-serif font-light mb-1">15<span className="text-sm align-top italic">+</span></span>
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">Ventures Launched</span>
                 </div>
                 <div>
-                  <span className="block text-4xl font-serif font-bold">1M+</span>
-                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Users Served</span>
+                  <span className="block text-5xl font-serif font-light mb-1">1M<span className="text-sm align-top italic">+</span></span>
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">Users Served</span>
                 </div>
                 <div>
-                  <span className="block text-4xl font-serif font-bold">∞</span>
-                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Curiosity</span>
+                  <span className="block text-5xl font-serif font-light mb-1">∞</span>
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">Curiosity</span>
                 </div>
               </div>
             </div>
+
           </motion.div>
         </div>
       </div>

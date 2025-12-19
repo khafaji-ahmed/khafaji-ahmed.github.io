@@ -8,12 +8,12 @@ const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" as const }
+  transition: { duration: 0.8, ease: "easeOut" as const }
 };
 
 export default function Resume() {
   return (
-    <Layout>
+    <Layout hideFooterCTA={true}>
       <div className="editorial-container">
         {/* Header */}
         <section className="flex flex-col md:flex-row justify-between items-baseline gap-10 mb-32 border-b border-border pb-20">
@@ -32,10 +32,11 @@ export default function Resume() {
           >
             <a 
               href="/resume.pdf" 
-              className="flex items-center gap-2 px-6 py-3 border border-ink text-sm uppercase tracking-widest hover:bg-ink hover:text-paper transition-all"
+              download
+              className="flex items-center gap-2 px-6 py-3 border border-ink bg-ink text-paper text-sm uppercase tracking-widest hover:bg-transparent hover:text-ink transition-all whitespace-nowrap"
             >
-              <Download size={14} />
-              Download PDF
+              <Download size={16} />
+              <span>Download PDF</span>
             </a>
           </motion.div>
         </section>
@@ -49,25 +50,25 @@ export default function Resume() {
             <div className="lg:col-span-8 space-y-24">
               {[
                 {
-                  role: "Founder & CTO",
-                  company: "Stealth Startup",
-                  period: "2023 — Present",
-                  desc: "Leading the architectural design and implementation of a next-generation data platform. Orchestrating high-performance systems and managing product strategy.",
-                  stack: ["Next.js", "Rust", "PostgreSQL", "AWS"]
+                  role: "Senior Software Architect",
+                  company: "Distinctive Wood Products",
+                  period: "2024 — Present",
+                  desc: "Solely responsible for the entire architectural landscape, digital infrastructure, and product evolution. Driving industrial-scale automation and high-performance system delivery as the primary technical lead.",
+                  stack: ["JavaScript", "PHP", "Postgres", "AWS"]
                 },
                 {
                   role: "Software Architect",
-                  company: "Enterprise Solutions",
-                  period: "2021 — 2023",
-                  desc: "Revolutionized core infrastructure, improving system latency by 40% and scaling to handle 5M+ monthly active users.",
-                  stack: ["Node.js", "Kubernetes", "Redis", "Terraform"]
+                  company: "Lightring AI",
+                  period: "2022 — 2023",
+                  desc: "Revolutionized core infrastructure for government and healthcare sectors, improving system latency by 30% and scaling to handle mission-critical traffic flows using distributed event-driven systems.",
+                  stack: ["Go", "gRPC", "Kafka", "Kubernetes", "Redis"]
                 },
                 {
-                  role: "Lead Frontend Engineer",
-                  company: "Creative Labs",
-                  period: "2019 — 2021",
-                  desc: "Designed and developed high-fidelity user interfaces and design systems for global clients in the luxury and tech sectors.",
-                  stack: ["React", "TypeScript", "Framer Motion", "Tailwind"]
+                  role: "Founder & Principal Architect",
+                  company: "Cayde Services Inc.",
+                  period: "2020 — 2022",
+                  desc: "Spearheaded the creation of high-fidelity cross-platform systems and real-time synchronization engines, optimizing high-load data pipelines for 55,000+ active users.",
+                  stack: ["Rust", "TypeScript", "React Native", "WebAssembly", "GraphQL"]
                 }
               ].map((job, i) => (
                 <motion.div 
@@ -99,31 +100,31 @@ export default function Resume() {
             </div>
           </div>
 
-          {/* Education & Skills */}
+          {/* Expertise Section */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-32 border-t border-border">
             <div className="lg:col-span-4">
               <h2 className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">Expertise</h2>
             </div>
             <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-20">
               <div className="space-y-10">
-                <h3 className="text-2xl font-serif italic">Technical Proficiency</h3>
-                <div className="space-y-8">
+                <h3 className="text-2xl font-serif italic border-b border-border pb-4">Technical Proficiency</h3>
+                <div className="space-y-12">
                   {[
-                    { cat: "Languages", items: "TypeScript, JavaScript, Rust, Python, Go" },
-                    { cat: "Frameworks", items: "Next.js, React, Node.js, Express, Fastify" },
+                    { cat: "Languages", items: "TypeScript, JavaScript, Rust, Python, Go, PHP" },
+                    { cat: "Frameworks", items: "Next.js, React, Node.js, Express, Fastify, React Native" },
                     { cat: "Data", items: "PostgreSQL, MongoDB, Redis, Prisma, Drizzle" },
-                    { cat: "Cloud", items: "AWS, Vercel, Docker, CI/CD, Terraform" }
+                    { cat: "Cloud", items: "AWS, Vercel, Docker, CI/CD, Terraform, Kubernetes" }
                   ].map((skill, i) => (
                     <div key={i} className="space-y-2">
-                      <h4 className="text-[10px] uppercase tracking-widest font-bold">{skill.cat}</h4>
-                      <p className="text-sm text-muted-foreground">{skill.items}</p>
+                      <h4 className="text-[10px] uppercase tracking-widest font-bold opacity-50">{skill.cat}</h4>
+                      <p className="text-lg font-sans tracking-tight leading-snug">{skill.items}</p>
                     </div>
                   ))}
                 </div>
               </div>
               <div className="space-y-10">
-                <h3 className="text-2xl font-serif italic">Soft Disciplines</h3>
-                <div className="space-y-8">
+                <h3 className="text-2xl font-serif italic border-b border-border pb-4">Soft Disciplines</h3>
+                <div className="space-y-12">
                   {[
                     { cat: "Leadership", items: "Team Management, Mentorship, Tech Lead" },
                     { cat: "Product", items: "Strategy, Roadmap Planning, UX Research" },
@@ -131,8 +132,8 @@ export default function Resume() {
                     { cat: "Other", items: "Public Speaking, Technical Writing" }
                   ].map((skill, i) => (
                     <div key={i} className="space-y-2">
-                      <h4 className="text-[10px] uppercase tracking-widest font-bold">{skill.cat}</h4>
-                      <p className="text-sm text-muted-foreground">{skill.items}</p>
+                      <h4 className="text-[10px] uppercase tracking-widest font-bold opacity-50">{skill.cat}</h4>
+                      <p className="text-lg font-sans tracking-tight leading-snug">{skill.items}</p>
                     </div>
                   ))}
                 </div>
@@ -142,15 +143,19 @@ export default function Resume() {
         </section>
 
         {/* Closing CTA */}
-        <section className="py-64 border-t border-border mt-32">
+        <section className="pt-40 pb-20 border-t border-border mt-40">
           <motion.div {...fadeInUp} className="max-w-4xl">
-            <h2 className="text-4xl md:text-7xl font-serif leading-tight mb-12">
-              Looking for an architect <br /> to lead your <span className="italic">next venture?</span>
+            <h2 className="text-5xl md:text-8xl font-serif leading-[0.9] tracking-tighter mb-12">
+              Looking for an <span className="italic font-light">architect</span> <br /> 
+              to lead your next <span className="italic font-light">venture?</span>
             </h2>
-            <div className="flex gap-8">
-              <a href="mailto:ahmedkhafaji11@gmail.com" className="text-xl font-serif italic link-underline">
-                Let&apos;s discuss the details.
-              </a>
+            <div className="space-y-6">
+              <p className="text-xl text-muted-foreground font-serif italic">Reach out for collaborations.</p>
+              <div className="flex flex-col md:flex-row gap-8 items-baseline">
+                <a href="mailto:cayde@cayde.ca" className="text-3xl md:text-4xl font-serif link-underline">
+                  cayde@cayde.ca
+                </a>
+              </div>
             </div>
           </motion.div>
         </section>
